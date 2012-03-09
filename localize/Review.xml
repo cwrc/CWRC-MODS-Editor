@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE localize SYSTEM "localize.dtd">
+<localize xmlns:fb="http://apache.org/cocoon/forms/1.0#binding"
+    xmlns:fd="http://apache.org/cocoon/forms/1.0#definition"
+    xmlns:ft="http://apache.org/cocoon/forms/1.0#template"
+    xmlns:fi="http://apache.org/cocoon/forms/1.0#instance"
+    xmlns:jx="http://apache.org/cocoon/templates/jx/1.0" xmlns:y="proto-xsl"
+   id="Review">
+   &selgenre;
+   &selfrequency;
+</localize>

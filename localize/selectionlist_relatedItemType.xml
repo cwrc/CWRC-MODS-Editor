@@ -1,0 +1,15 @@
+<selectionlist class="relatedItem">
+   <field id="type">
+      <item value="preceding">preceding</item>
+      <item value="succeeding">succeeding</item>
+      <item value="original">original</item>
+      <!-- removed "host" item -->
+      <item value="constituent">constituent</item>
+      <item value="series">series</item>
+      <item value="otherVersion">otherVersion</item>
+      <item value="otherFormat">otherFormat</item>
+      <item value="isReferencedBy">isReferencedBy</item>
+      <styling/>
+   </field>
+</selectionlist>
+

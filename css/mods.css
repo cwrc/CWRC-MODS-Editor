@@ -1,0 +1,325 @@
+/*
+Copyright 2005, 2007, 2008 University of Alberta Libraries  
+    
+This file is part of MODS Editor.
+
+MODS Editor is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+MODS Editor is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
+*/
+body {background: #eee;}
+.header {background: #fff; border: 1px solid black; padding-left: 15px;}
+h3 {margin-bottom: 0px; margin-top: 3px; border-bottom: 1px dotted black;}
+h4 {margin-bottom: 0px; margin-top: 3px; border-bottom: 1px dotted black; font-family: sansserif, arial;}
+h5 {margin: -5px -5px 5px -80px; font-family: sansserif, arial; padding: 2px; background: black; color: white;}
+h6 {margin: -5px -5px 5px -30px; padding: 2px; background: black; color: white;}
+h2 {margin-top: 3px; margin-bottom: 3px;}
+p {margin-top: 0px; margin-bottom: 3px;}
+td {vertical-align: top;}
+a {color: red;}
+
+
+.setwidth {width: 100px; float: left; text-align: right; padding-right: 0.5em;}
+.setwidth-wide {width: 200px; float: left; text-align: right; padding-right: 0.5em;}
+.setwidth:after, .setwidth-wide:after {content: ": "}
+
+.row {border: 1px solid black; margin-bottom: 10px; padding: 5px; background: #eee; color: #000;}
+
+.details {border: 1px solid black; margin-bottom: 20px; padding: 5px; background: #ddf;}
+
+.block {
+  padding-bottom: 10px;
+}
+.block .block .row {background: #dfd;}
+
+.block .block .block .row {background: #ddf;}
+
+.block .block .block .block .row {background: #fdd;}
+
+/* inputs */
+
+input, select, textarea {background: #ffff66;}
+input[value=""] {background: #ffc;}
+
+.common-controls {
+	border: 1px solid black; 
+	background: #ff6;
+	padding: 3px;
+	margin: 5px 5px 0px 5px;
+	float: right;
+}
+div.clear {
+	clear: both;
+	height: 0px;
+}
+.empty-block-false {
+	/*background: #ddd;*/
+	margin-bottom: 20px;
+	padding: 5px;
+	clear: both;
+}
+.empty-block-true {
+	background: #dfd;
+	margin-bottom: 20px;
+	margin-right: 1em;
+	border: 1px solid #888;
+	padding: 5px;
+	float: left;
+}
+.empty-block-true h4 {
+	font-size: small;
+}
+.empty-repeater-true {
+	display: none;
+}
+.common-controls input, .submit input {
+	background: #ccc;
+}
+.repeater-count {
+	float: right;
+}
+ .submit {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.forms-tabContent {
+  background: #ddf; background-image: url('images/mods.gif'); background-repeat: repeat-y; padding-left: 70px;
+}
+.hint {
+	font-style: italic;
+	}
+/* ************************************************************************
+*
+*      Top level elements 
+*
+**************************************************************************/
+.toplevel {
+  background: #dfd; background-repeat: repeat-y; padding-left: 5em;
+}
+.titleInfo {
+	background-image: url('images/top-titleInfo.gif'); 
+}
+.name {
+	background-image: url('images/top-name.gif'); 
+}
+.typeOfResource {
+	background-image: url('images/top-typeOfResource.gif'); 
+}
+.genre {
+	background-image: url('images/top-genre.gif'); 
+}
+.originInfo {
+	background-image: url('images/top-originInfo.gif'); 
+}
+.language {
+	background-image: url('images/top-language.gif'); 
+}
+.physicalDescription {
+	background-image: url('images/top-physicalDescription.gif'); 
+}
+.abstract {
+	background-image: url('images/top-abstract.gif'); 
+}
+.tableOfContents {
+	background-image: url('images/top-tableOfContents.gif'); 
+}
+.targetAudience {
+	background-image: url('images/top-targetAudience.gif'); 
+}
+.note {
+	background-image: url('images/top-note.gif'); 
+}
+.subject {
+	background-image: url('images/top-subject.gif'); 
+}
+.classification {
+	background-image: url('images/top-classification.gif'); 
+}
+.relatedItem {
+	background-image: url('images/top-relatedItem.gif'); 
+}
+.identifier {
+	background-image: url('images/top-identifier.gif'); 
+}
+.location {
+	background-image: url('images/top-location.gif'); 
+}
+.accessCondition {
+	background-image: url('images/top-accessCondition.gif'); 
+}
+.extension {
+	background-image: url('images/top-extension.gif'); 
+}
+.recordInfo {
+	background-image: url('images/top-recordInfo.gif'); 
+}
+
+/* ************************************************************************
+*
+*       Top Level elements contained in a relatedItem 
+*
+**************************************************************************/
+#relatedItems .relatedItem .toplevel {
+  background: #fdd; background-repeat: repeat-y; padding-left: 5em;
+}
+#relatedItems .relatedItem .part {
+	background-image: url('images/rel-part.gif'); 
+}
+#relatedItems .relatedItem .titleInfo {
+	background-image: url('images/rel-titleInfo.gif'); 
+}
+#relatedItems .relatedItem .name {
+	background-image: url('images/rel-name.gif'); 
+}
+#relatedItems .relatedItem .typeOfResource {
+	background-image: url('images/rel-typeOfResource.gif'); 
+}
+#relatedItems .relatedItem .genre {
+	background-image: url('images/rel-genre.gif'); 
+}
+#relatedItems .relatedItem .originInfo {
+	background-image: url('images/rel-originInfo.gif'); 
+}
+#relatedItems .relatedItem .language {
+	background-image: url('images/rel-language.gif'); 
+}
+#relatedItems .relatedItem .physicalDescription {
+	background-image: url('images/rel-physicalDescription.gif'); 
+}
+#relatedItems .relatedItem .abstract {
+	background-image: url('images/rel-abstract.gif'); 
+}
+#relatedItems .relatedItem .tableOfContents {
+	background-image: url('images/rel-tableOfContents.gif'); 
+}
+#relatedItems .relatedItem .targetAudience {
+	background-image: url('images/rel-targetAudience.gif'); 
+}
+#relatedItems .relatedItem .note {
+	background-image: url('images/rel-note.gif'); 
+}
+#relatedItems .relatedItem .subject {
+	background-image: url('images/rel-subject.gif'); 
+}
+#relatedItems .relatedItem .classification {
+	background-image: url('images/rel-classification.gif'); 
+}
+#relatedItems .relatedItem .relatedItem {
+	background-image: url('images/rel-relatedItem.gif'); 
+}
+#relatedItems .relatedItem .identifier {
+	background-image: url('images/rel-identifier.gif'); 
+}
+#relatedItems .relatedItem .location {
+	background-image: url('images/rel-location.gif'); 
+}
+#relatedItems .relatedItem .accessCondition {
+	background-image: url('images/rel-accessCondition.gif'); 
+}
+#relatedItems .relatedItem .extension {
+	background-image: url('images/rel-extension.gif'); 
+}
+#relatedItems .relatedItem .recordInfo {
+	background-image: url('images/rel-recordInfo.gif'); 
+}
+/* ************************************************************************
+*
+*       Subject types
+*
+**************************************************************************/
+.subject-type {
+	background-repeat: repeat-y; 
+    padding-left: 30px;
+  margin-left: -30px;
+}
+.subject-type-topic {
+	background-image: url('images/subject-type-topic.gif'); 
+}
+.subject-type-geographic {
+	background-image: url('images/subject-type-geographic.gif'); 
+}
+.subject-type-temporal {
+	background-image: url('images/subject-type-temporal.gif'); 
+}
+.subject-type-titleInfo {
+	background-image: url('images/subject-type-titleInfo.gif'); 
+}
+.subject-type-name {
+	background-image: url('images/subject-type-name.gif'); 
+}
+.subject-type-hierarchicalGeographic {
+	background-image: url('images/subject-type-hierarchicalGeographic.gif'); 
+}
+.subject-type-cartographics {
+	background-image: url('images/subject-type-cartographics.gif'); 
+}
+.subject-type-geographicCode {
+	background-image: url('images/subject-type-geographicCode.gif'); 
+}
+.subject-type-occupation {
+	background-image: url('images/subject-type-occupation.gif'); 
+}
+/* ************************************************************************
+*
+*       Sub-Repeaters and Sub-Sub-Repeaters
+*
+**************************************************************************/
+.subrepeater {
+    background: #fff9a9 ! important;
+	background-repeat: repeat-y ! important; 
+    padding-left: 30px ! important;
+}
+.subsubrepeater {
+    background: #f9a9ff ! important;
+	background-repeat: repeat-y ! important; 
+    padding-left: 30px ! important;
+}
+.name-namePart {
+	background-image: url('images/subrepeater-namePart.gif') ! important; 
+}
+.originInfo-place {
+	background-image: url('images/subrepeater-place.gif') ! important; 
+}
+.originInfo-place-placeTerm {
+	background-image: url('images/subsubrepeater-placeTerm.gif') ! important; 
+}
+.originInfo-date {
+	background-image: url('images/subrepeater-date.gif') ! important; 
+}
+.language-languageTerm {
+	background-image: url('images/subrepeater-languageTerm.gif') ! important; 
+}
+.physicalDescription-note {
+	background-image: url('images/subrepeater-note.gif') ! important; 
+}
+.recordInfo-recordContentSource {
+	background-image: url('images/subrepeater-recordContentSource.gif') ! important; 
+}
+.recordInfo-recordCreationDate {
+	background-image: url('images/subrepeater-recordCreationDate.gif') ! important; 
+}
+.recordInfo-recordChangeDate {
+	background-image: url('images/subrepeater-recordChangeDate.gif') ! important; 
+}
+.recordInfo-recordIdentifier {
+	background-image: url('images/subrepeater-recordIdentifier.gif') ! important; 
+}
+.relatedItem-part-detail {
+	background-image: url('images/subrepeater-detail.gif') ! important; 
+}
+.relatedItem-part-date {
+	background-image: url('images/subrepeater-date.gif') ! important; 
+}
+.relatedItem-part-text {
+	background-image: url('images/subrepeater-text.gif') ! important; 
+}

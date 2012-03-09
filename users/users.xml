@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+		<user password="test1">
+			<ID>pbinkley</ID>
+			<role>admin</role>
+			<data>
+				<email>peter.binkley@ualberta.ca</email>
+			</data>
+		</user>
+		<user password="test2">
+			<ID>jsmith</ID>
+			<role>metadata</role>
+			<data>
+				<email>test.test@ualberta.ca</email>
+			</data>
+		</user>
+</users>

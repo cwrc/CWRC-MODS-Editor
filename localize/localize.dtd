@@ -1,0 +1,3 @@
+<!ENTITY selgenre SYSTEM "selectionlist_genre.xml">
+<!ENTITY selrelatedItemType SYSTEM "selectionlist_relatedItemType.xml">
+<!ENTITY selfrequency SYSTEM "selectionlist_frequency.xml">

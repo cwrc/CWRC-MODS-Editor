@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2005, 2007, 2008 University of Alberta Libraries  
+    
+This file is part of MODS Editor.
+
+MODS Editor is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+MODS Editor is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<project default="build">
+	<!-- create background images -->
+	<!-- path to ImageMagick's "convert" program -->
+	<property name="im.convert" location="C:/Program files\imagemagick-6.2.9-q16\convert.exe"/>
+	<!-- image options -->
+	<property name="font" value="Arial"/>
+	<property name="caption" value="MODS"/>
+	<property name="background" value="#ddf"/>
+	<property name="fill" value="#aaf"/>
+	<property name="pointsize" value="22"/>
+	<property name="size" value="200x200"/>
+	<property name="rotate" value="45.0"/>
+	<property name="translate" value="20,0"/>
+	<property name="gravity" value="NorthWest"/>
+	<property name="file" value="mods"/>
+	<target name="subject-types">
+		<antcall target="subject-type-image">
+			<param name="caption" value="topic"/>
+			<param name="file" value="topic"/>
+		</antcall>
+		<antcall target="subject-type-image">
+			<param name="caption" value="geo"/>
+			<param name="file" value="geographic"/>
+		</antcall>
+		<antcall target="subject-type-image">
+			<param name="caption" value="tempo"/>
+			<param name="file" value="temporal"/>
+		</antcall>
+		<antcall target="subject-type-image">
+			<param name="caption" value="titleInfo"/>
+			<param name="file" value="titleInfo"/>
+		</antcall>
+		<antcall target="subject-type-image">
+			<param name="caption" value="name"/>
+			<param name="file" value="name"/>
+		</antcall>
+		<antcall target="subject-type-image">
+			<param name="caption" value="hierGeo"/>
+			<param name="file" value="hierarchicalGeographic"/>
+		</antcall>
+		<antcall target="subject-type-image">
+			<param name="caption" value="carto"/>
+			<param name="file" value="cartographics"/>
+		</antcall>
+		<antcall target="subject-type-image">
+			<param name="caption" value="geoCode"/>
+			<param name="file" value="geographicCode"/>
+		</antcall>
+		<antcall target="subject-type-image">
+			<param name="caption" value="occu"/>
+			<param name="file" value="occupation"/>
+		</antcall>
+	</target>
+	<target name="subject-type-image">
+		<antcall target="image">
+			<param name="caption" value="${caption}"/>
+			<param name="file" value="subject-type-${file}"/>
+			<param name="size" value="25x100"/>
+			<param name="rotate" value="90.0"/>
+			<param name="translate" value="20,5"/>
+			<param name="background" value="#fff9a9"/>
+			<param name="fill" value="#ff6655"/>
+			<param name="pointsize" value="16"/>
+		</antcall>
+	</target>
+	<target name="subrepeater-image">
+		<antcall target="image">
+			<param name="caption" value="${caption}"/>
+			<param name="file" value="subrepeater-${file}"/>
+			<param name="size" value="25x100"/>
+			<param name="rotate" value="90.0"/>
+			<param name="translate" value="20,25"/>
+			<param name="background" value="#fff9a9"/>
+			<param name="fill" value="#ff6655"/>
+			<param name="pointsize" value="16"/>
+		</antcall>
+	</target>
+	<target name="subrepeaters">
+		<antcall target="subrepeater-image">
+			<param name="caption" value="part"/>
+			<param name="file" value="namePart"/>
+		</antcall>
+		<antcall target="subrepeater-image">
+			<param name="caption" value="place"/>
+			<param name="file" value="place"/>
+		</antcall>
+		<antcall target="subrepeater-image">
+			<param name="caption" value="date"/>
+			<param name="file" value="date"/>
+		</antcall>
+		<antcall target="subrepeater-image">
+			<param name="caption" value="term"/>
+			<param name="file" value="languageTerm"/>
+		</antcall>
+		<antcall target="subrepeater-image">
+			<param name="caption" value="note"/>
+			<param name="file" value="note"/>
+		</antcall>
+		<antcall target="subrepeater-image">
+			<param name="caption" value="source"/>
+			<param name="file" value="recordContentSource"/>
+		</antcall>
+		<antcall target="subrepeater-image">
+			<param name="caption" value="creation"/>
+			<param name="file" value="recordCreationDate"/>
+		</antcall>
+		<antcall target="subrepeater-image">
+			<param name="caption" value="change"/>
+			<param name="file" value="recordChangeDate"/>
+		</antcall>
+		<antcall target="subrepeater-image">
+			<param name="caption" value="identifier"/>
+			<param name="file" value="recordIdentifier"/>
+		</antcall>
+		<antcall target="subrepeater-image">
+			<param name="caption" value="detail"/>
+			<param name="file" value="detail"/>
+		</antcall>
+		<antcall target="subrepeater-image">
+			<param name="caption" value="text"/>
+			<param name="file" value="text"/>
+		</antcall>
+	</target>
+	<target name="subsubrepeater-image">
+		<antcall target="image">
+			<param name="caption" value="${caption}"/>
+			<param name="file" value="subsubrepeater-${file}"/>
+			<param name="size" value="25x100"/>
+			<param name="rotate" value="90.0"/>
+			<param name="translate" value="20,25"/>
+			<param name="background" value="#f9a9ff"/>
+			<param name="fill" value="#6655ff"/>
+			<param name="pointsize" value="16"/>
+		</antcall>
+	</target>
+	<target name="subsubrepeaters">
+		<antcall target="subsubrepeater-image">
+			<param name="caption" value="placeTerm"/>
+			<param name="file" value="placeTerm"/>
+		</antcall>
+	</target>
+	<target name="build" description="generate all background images">
+		<antcall target="mods"/>
+		<antcall target="elements"/>
+		<antcall target="subject-types"/>
+		<antcall target="subrepeaters"/>
+		<antcall target="subsubrepeaters"/>
+	</target>
+	<target name="elements" description="generate top-level and relatedItem-embedded images">
+		<antcall target="element">
+			<param name="caption" value="titleInfo"/>
+			<param name="file" value="titleInfo"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="name"/>
+			<param name="file" value="name"/>
+			<param name="top-translate" value="10,50"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="typeOfResource"/>
+			<param name="file" value="typeOfResource"/>
+			<param name="top-translate" value="10,120"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="genre"/>
+			<param name="file" value="genre"/>
+			<param name="top-translate" value="10,50"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="originInfo"/>
+			<param name="file" value="originInfo"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="language"/>
+			<param name="file" value="language"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="physicalDescription"/>
+			<param name="file" value="physicalDescription"/>
+			<param name="top-translate" value="10,140"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="abstract"/>
+			<param name="file" value="abstract"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="tableOfContents"/>
+			<param name="file" value="tableOfContents"/>
+			<param name="top-translate" value="10,120"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="targetAudience"/>
+			<param name="file" value="targetAudience"/>
+			<param name="top-translate" value="10,120"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="note"/>
+			<param name="file" value="note"/>
+			<param name="top-translate" value="10,50"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="subject"/>
+			<param name="file" value="subject"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="classification"/>
+			<param name="file" value="classification"/>
+			<param name="top-translate" value="10,120"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="relatedItem"/>
+			<param name="file" value="relatedItem"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="identifier"/>
+			<param name="file" value="identifier"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="location"/>
+			<param name="file" value="location"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="accessCondition"/>
+			<param name="file" value="accessCondition"/>
+			<param name="top-translate" value="10,130"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="extension"/>
+			<param name="file" value="extension"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="recordInfo"/>
+			<param name="file" value="recordInfo"/>
+		</antcall>
+		<antcall target="element">
+			<param name="caption" value="part"/>
+			<param name="file" value="part"/>
+		</antcall>
+	</target>
+	<target name="mods" description="generate a MODS image">
+		<antcall target="image">
+			<param name="file" value="mods"/>
+		</antcall>
+	</target>
+	<target name="element" description="generate top and rel images for a given element">
+		<antcall target="top">
+			<param name="file" value="${file}"/>
+			<param name="caption" value="${caption}"/>
+		</antcall>
+		<antcall target="rel">
+			<param name="file" value="${file}"/>
+			<param name="caption" value="${caption}"/>
+		</antcall>
+	</target>
+	<target name="top" description="generate a top-level image">
+		<!-- all "translate" property to be overridden, so we can move short names up -->
+		<property name="top-translate" value="10,85"/>
+		<antcall target="image">
+			<param name="file" value="top-${file}"/>
+			<param name="caption" value="${caption}"/>
+			<param name="background" value="#dfd"/>
+			<param name="fill" value="#7f7"/>
+			<param name="translate" value="${top-translate}"/>
+			<param name="rotate" value="-45.0"/>
+			<param name="gravity" value="NorthWest"/>
+		</antcall>
+	</target>
+	<target name="rel" description="generate a relatedItem-embedded image">
+		<antcall target="image">
+			<param name="file" value="rel-${file}"/>
+			<param name="caption" value="${caption}"/>
+			<param name="background" value="#fdd"/>
+			<param name="fill" value="#f77"/>
+			<param name="rotate" value="45.0"/>
+			<param name="gravity" value="SouthWest"/>
+			<param name="translate" value="10,160"/>
+		</antcall>
+	</target>
+	<target name="image">
+		<echo message="${file}: font ${font} font-size ${pointsize} fill ${fill} translate ${translate} gravity ${gravity} rotate ${rotate} text 0,0 '${caption}'"/>
+		<exec executable="${im.convert}" dir=".">
+			<arg value="-size"/>
+			<arg value="${size}"/>
+			<arg value="xc:${background}"/>
+			<arg value="-draw"/>
+			<arg value="&quot;font ${font} font-size ${pointsize} fill ${fill} translate ${translate} gravity ${gravity} rotate ${rotate} text 0,0 '${caption}'&quot;"/>
+			<arg value="${file}.gif"/>
+		</exec>
+	</target>
+</project>

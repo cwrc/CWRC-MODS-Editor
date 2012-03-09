@@ -1,0 +1,883 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Documentation: MODS Form Model</title>
+<link type="text/css" href="../css/mods-editor-doc.css" rel="stylesheet">
+</head>
+<body>
+<h1>Documentation: MODS Form Model</h1>
+<ul>
+<li class="class">
+<span class="class">class</span>: <span class="id">common-subject-date-elements-class</span>
+<div class="doc">
+				
+<p xmlns:fd="http://apache.org/cocoon/forms/1.0#definition" xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns:doc="http://peel.library.ualberta.ca/modseditor/doc/1.0">This class is used for all dates in originInfo.</p>
+			
+</div>
+<a id="common-subject-date-elements-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#subject-widget-row-class">subject-widget-row-class</a>; <a href="#originInfo-class">originInfo-class</a>; <a href="#part-class">part-class</a>; <a href="#recordInfo-class">recordInfo-class</a>
+<ul class="class">
+<li class="field">
+<span class="field">field</span>: <span class="id">value</span> (string) [<span class="label">Label</span>: "<span class="id">Date</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">encoding</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+							(no encoding)
+						</span> | <span class="selection-list-item">w3cdtf</span> | <span class="selection-list-item">iso8601</span> | <span class="selection-list-item">marc</span>) [<span class="label">Label</span>: "<span class="id">Encoding</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">point</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+							(no point)
+						</span> | <span class="selection-list-item">start</span> | <span class="selection-list-item">end</span>) [<span class="label">Label</span>: "<span class="id">Point</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">keydate</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+							(no keyDate)
+						</span> | <span class="selection-list-item">yes</span>) [<span class="label">Label</span>: "<span class="id">keyDate</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">common-date-elements-class</span><a id="common-date-elements-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#originInfo-class">originInfo-class</a>; <a href="#part-class">part-class</a>; <a href="#recordInfo-class">recordInfo-class</a>
+<ul class="class">
+<li class="field">
+<span class="field">field</span>: <span class="id">qualifier</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+							(no qualifier)
+						</span> | <span class="selection-list-item">approximate</span> | <span class="selection-list-item">inferred</span> | <span class="selection-list-item">questionable</span>) [<span class="label">Label</span>: "<span class="id">Qualifier</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">common-language-elements-class</span><a id="common-language-elements-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#single-titleInfo-class">single-titleInfo-class</a>; <a href="#single-name-class">single-name-class</a>; <a href="#genre-class">genre-class</a>; <a href="#originInfo-class">originInfo-class</a>; <a href="#physicalDescription-class">physicalDescription-class</a>; <a href="#abstract-class">abstract-class</a>; <a href="#tableOfContents-class">tableOfContents-class</a>; <a href="#note-class">note-class</a>; <a href="#targetAudience-class">targetAudience-class</a>; <a href="#subject-class">subject-class</a>; <a href="#classification-class">classification-class</a>; <a href="#xidentifier-class">xidentifier-class</a>; <a href="#location-class">location-class</a>; <a href="#accessCondition-class">accessCondition-class</a>; <a href="#recordInfo-class">recordInfo-class</a>; <a href="#relatedItem-class">relatedItem-class</a>
+<ul class="class">
+<li class="field">
+<span class="field">field</span>: <span class="id">lang</span> (string) [<span class="label">Label</span>: "<span class="id">lang</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">xml-lang</span> (string) [<span class="label">Label</span>: "<span class="id">xml-lang</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">script</span> (string) [<span class="label">Label</span>: "<span class="id">script</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">transliteration</span> (string) [<span class="label">Label</span>: "<span class="id">transliteration</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">common-linking-elements-class</span><a id="common-linking-elements-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#single-titleInfo-class">single-titleInfo-class</a>; <a href="#single-name-class">single-name-class</a>; <a href="#subject-class">subject-class</a>; <a href="#relatedItem-class">relatedItem-class</a>
+<ul class="class">
+<li class="field">
+<span class="field">field</span>: <span class="id">modsID</span> (string) [<span class="label">Label</span>: "<span class="id">ID</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">xlink</span> (string) [<span class="label">Label</span>: "<span class="id">xlink</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">common-controls-class</span><a id="common-controls-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#subject-widget-row-class">subject-widget-row-class</a>; <a href="#titleInfo-class">titleInfo-class</a>; <a href="#single-name-class">single-name-class</a>; <a href="#name-class">name-class</a>; <a href="#typeOfResource-class">typeOfResource-class</a>; <a href="#genre-class">genre-class</a>; <a href="#originInfo-class">originInfo-class</a>; <a href="#language-class">language-class</a>; <a href="#physicalDescription-class">physicalDescription-class</a>; <a href="#abstract-class">abstract-class</a>; <a href="#tableOfContents-class">tableOfContents-class</a>; <a href="#note-class">note-class</a>; <a href="#targetAudience-class">targetAudience-class</a>; <a href="#subject-class">subject-class</a>; <a href="#classification-class">classification-class</a>; <a href="#xidentifier-class">xidentifier-class</a>; <a href="#location-class">location-class</a>; <a href="#accessCondition-class">accessCondition-class</a>; <a href="#part-class">part-class</a>; <a href="#recordInfo-class">recordInfo-class</a>; <a href="#relatedItem-class">relatedItem-class</a>
+<ul class="class"></ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">common-textfield-class</span><a id="common-textfield-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#physicalDescription-class">physicalDescription-class</a>; <a href="#abstract-class">abstract-class</a>; <a href="#tableOfContents-class">tableOfContents-class</a>; <a href="#note-class">note-class</a>; <a href="#part-class">part-class</a>
+<ul class="class">
+<li class="field">
+<span class="field">field</span>: <span class="id">value</span> (string) [<span class="label">Label</span>: "<span class="id">Value</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">type</span> (string) [<span class="label">Label</span>: "<span class="id">Type</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">xlink</span> (string) [<span class="label">Label</span>: "<span class="id">xlink</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">displaylabel</span> (string) [<span class="label">Label</span>: "<span class="id">displayLabel</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">subject-widgets-class</span><a id="subject-widgets-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#subject-class">subject-class</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">subject-widgets</span> [<span class="label">Label</span>: "<span class="id">Subjects</span>"]<br>
+<span class="label">Uses: </span><a href="#subject-widget-row-class">subject-widget-row-class</a>
+<ul class="repeater"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">subject-widget-row-class</span><a id="subject-widget-row-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#subject-widgets-class">subject-widgets-class</a>
+<ul class="class">
+<li class="field">
+<span class="field">field</span>: <span class="id">type</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+							Choose a type
+						</span> | <span class="selection-list-item">mods_topic</span> | <span class="selection-list-item">mods_geographic</span> | <span class="selection-list-item">mods_temporal</span> | <span class="selection-list-item">mods_titleInfo</span> | <span class="selection-list-item">mods_name</span> | <span class="selection-list-item">mods_hierarchicalGeographic</span> | <span class="selection-list-item">mods_cartographics</span> | <span class="selection-list-item">mods_geographicCode</span> | <span class="selection-list-item">mods_occupation</span>) [<span class="label">Label</span>: "<span class="id">Subject Type</span>"]<ul class="field"></ul>
+</li>
+<li class="union">
+<span class="union">union</span>: <span class="id">union</span> [<span class="label">Label</span>: "<span class="id">Type</span>"]<ul class="union"> [<span class="label">Label</span>: "<span class="id">Topic</span>"]<li class="field">
+<span class="field">field</span>: <span class="id">value</span> (string) [<span class="label">Label</span>: "<span class="id">Value</span>"]<ul class="field"></ul>
+</li> [<span class="label">Label</span>: "<span class="id">geographic</span>"]<li class="field">
+<span class="field">field</span>: <span class="id">value</span> (string) [<span class="label">Label</span>: "<span class="id">Value</span>"]<ul class="field"></ul>
+</li> [<span class="label">Label</span>: "<span class="id">Temporal</span>"] [<span class="label">Label</span>: "<span class="id">titleInfo</span>"] [<span class="label">Label</span>: "<span class="id">name</span>"] [<span class="label">Label</span>: "<span class="id">hierarchicalGeographic</span>"]<li class="field">
+<span class="field">field</span>: <span class="id">continent</span> (string) [<span class="label">Label</span>: "<span class="id">Continent</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">country</span> (string) [<span class="label">Label</span>: "<span class="id">Country</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">province</span> (string) [<span class="label">Label</span>: "<span class="id">Province</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">region</span> (string) [<span class="label">Label</span>: "<span class="id">Region</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">state</span> (string) [<span class="label">Label</span>: "<span class="id">State</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">territory</span> (string) [<span class="label">Label</span>: "<span class="id">Territory</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">county</span> (string) [<span class="label">Label</span>: "<span class="id">County</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">city</span> (string) [<span class="label">Label</span>: "<span class="id">City</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">island</span> (string) [<span class="label">Label</span>: "<span class="id">Island</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">area</span> (string) [<span class="label">Label</span>: "<span class="id">Area</span>"]<ul class="field"></ul>
+</li> [<span class="label">Label</span>: "<span class="id">cartographics</span>"]<li class="field">
+<span class="field">field</span>: <span class="id">coordinates</span> (string) [<span class="label">Label</span>: "<span class="id">Coordinates</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">scale</span> (string) [<span class="label">Label</span>: "<span class="id">Scale</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">projection</span> (string) [<span class="label">Label</span>: "<span class="id">Projection</span>"]<ul class="field"></ul>
+</li> [<span class="label">Label</span>: "<span class="id">geographicCode</span>"]<li class="field">
+<span class="field">field</span>: <span class="id">value</span> (string) [<span class="label">Label</span>: "<span class="id">Value</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">authority</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+											(none)
+										</span> | <span class="selection-list-item">marcgac</span> | <span class="selection-list-item">marccountry</span> | <span class="selection-list-item">iso3166</span>) [<span class="label">Label</span>: "<span class="id">Authority</span>"]<ul class="field"></ul>
+</li> [<span class="label">Label</span>: "<span class="id">occupation</span>"]<li class="field">
+<span class="field">field</span>: <span class="id">value</span> (string) [<span class="label">Label</span>: "<span class="id">Value</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">single-titleInfo-class</span><a id="single-titleInfo-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#subject-widget-row-class">subject-widget-row-class</a>; <a href="#titleInfo-class">titleInfo-class</a>
+<br>
+<span class="label">Uses: </span><a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-linking-elements-class">common-linking-elements-class</a>
+<ul class="class">
+<li class="field">
+<span class="field">field</span>: <span class="id">nonsort</span> (string) [<span class="label">Label</span>: "<span class="id">nonSort</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">title</span> (string) [<span class="label">Label</span>: "<span class="id">Title</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">subtitle</span> (string) [<span class="label">Label</span>: "<span class="id">subTitle</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">partnumber</span> (string) [<span class="label">Label</span>: "<span class="id">partNumber</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">partname</span> (string) [<span class="label">Label</span>: "<span class="id">partName</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">type</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+							(none)
+						</span> | <span class="selection-list-item">abbreviated</span> | <span class="selection-list-item">translated</span> | <span class="selection-list-item">alternative</span> | <span class="selection-list-item">uniform</span>) [<span class="label">Label</span>: "<span class="id">Type</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">titleInfo-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#titleInfo">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#titleInfo">guidelines</a>
+</p>
+<a id="titleInfo-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">titleInfos</span> [<span class="label">Label</span>: "<span class="id">mods:titleInfo</span>"]<br>
+<span class="label">Uses: </span><a href="#single-titleInfo-class">single-titleInfo-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">single-name-class</span><a id="single-name-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#subject-widget-row-class">subject-widget-row-class</a>; <a href="#name-class">name-class</a>
+<br>
+<span class="label">Uses: </span><a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-linking-elements-class">common-linking-elements-class</a>
+<ul class="class">
+<li class="field">
+<span class="field">field</span>: <span class="id">type</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">personal</span> | <span class="selection-list-item">corporate</span>) [<span class="label">Label</span>: "<span class="id">Type</span>"]<ul class="field"></ul>
+</li>
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">nameparts</span> [<span class="label">Label</span>: "<span class="id">nameParts</span>"]<br>
+<span class="label">Uses: </span><a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">type</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+									(no type)
+								</span> | <span class="selection-list-item">date</span> | <span class="selection-list-item">family</span> | <span class="selection-list-item">given</span> | <span class="selection-list-item">termsOfAddress</span>) [<span class="label">Label</span>: "<span class="id">type</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">value</span> (string) [<span class="label">Label</span>: "<span class="id">namePart</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">description</span> (string) [<span class="label">Label</span>: "<span class="id">Description</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">role</span> (string) [<span class="label">Label</span>: "<span class="id">Role</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">name-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#name">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#name">guidelines</a>
+</p>
+<a id="name-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">names</span> [<span class="label">Label</span>: "<span class="id">mods:name</span>"]<br>
+<span class="label">Uses: </span><a href="#single-name-class">single-name-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">typeOfResource-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#typeOfResource">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#typeOfResource">guidelines</a>
+</p>
+<a id="typeOfResource-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">typeOfResources</span> [<span class="label">Label</span>: "<span class="id">mods:typeOfResource</span>"]<br>
+<span class="label">Uses: </span><a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater"> [<span class="label">Label</span>: "<span class="id">Collection</span>"] [<span class="label">Label</span>: "<span class="id">Manuscript</span>"]<li class="field">
+<span class="field">field</span>: <span class="id">type</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">text</span> | <span class="selection-list-item">cartographic</span> | <span class="selection-list-item">notated music</span> | <span class="selection-list-item">sound recording</span> | <span class="selection-list-item">sound recording-musical</span> | <span class="selection-list-item">sound recording-nonmusical</span> | <span class="selection-list-item">still image</span> | <span class="selection-list-item">moving image</span> | <span class="selection-list-item">three dimensional object</span> | <span class="selection-list-item">software, multimedia</span> | <span class="selection-list-item">mixed media</span>) [<span class="label">Label</span>: "<span class="id">Type</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">genre-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#genre">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#genre">guidelines</a>
+</p>
+<a id="genre-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">genres</span> [<span class="label">Label</span>: "<span class="id">mods:genre</span>"]<br>
+<span class="label">Uses: </span><a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">genre</span> (string) [<span class="label">Label</span>: "<span class="id">Genre</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">authority</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+									(none)
+								</span> | <span class="selection-list-item">rbgenr</span> | <span class="selection-list-item">marcgt</span>) [<span class="label">Label</span>: "<span class="id">Authority</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">originInfo-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#originInfo">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#originInfo">guidelines</a>
+</p>
+<a id="originInfo-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">originInfos</span> [<span class="label">Label</span>: "<span class="id">mods:originInfo</span>"]<br>
+<span class="label">Uses: </span><a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">places</span> [<span class="label">Label</span>: "<span class="id">Places</span>"]<br>
+<span class="label">Uses: </span><a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">placeterms</span> [<span class="label">Label</span>: "<span class="id">PlaceTerms</span>"]<br>
+<span class="label">Uses: </span><a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">places_placeterms_pubplace</span> (string) [<span class="label">Label</span>: "<span class="id">Publication Place</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">places_placeterms_type</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+													(none)
+												</span> | <span class="selection-list-item">text</span> | <span class="selection-list-item">code</span>) [<span class="label">Label</span>: "<span class="id">Type</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">places_placeterms_authority</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+													(none)
+												</span> | <span class="selection-list-item">marccountry</span> | <span class="selection-list-item">iso3166</span>) [<span class="label">Label</span>: "<span class="id">Authority</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">publisher</span> (string) [<span class="label">Label</span>: "<span class="id">Publisher</span>"]<ul class="field"></ul>
+</li>
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">dates</span> [<span class="label">Label</span>: "<span class="id">date</span>"]<br>
+<span class="label">Uses: </span><a href="#common-subject-date-elements-class">common-subject-date-elements-class</a>; <a href="#common-date-elements-class">common-date-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">dates_temp_type</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">dateIssued</span> | <span class="selection-list-item">dateCreated</span> | <span class="selection-list-item">dateCaptured</span> | <span class="selection-list-item">dateValid</span> | <span class="selection-list-item">dateModified</span> | <span class="selection-list-item">copyrightDate</span> | <span class="selection-list-item">dateOther</span>) [<span class="label">Label</span>: "<span class="id">Type</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">datecreated</span> (string) [<span class="label">Label</span>: "<span class="id">Created</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">datecaptured</span> (string) [<span class="label">Label</span>: "<span class="id">Captured</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">datevalid</span> (string) [<span class="label">Label</span>: "<span class="id">Valid</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">datemodified</span> (string) [<span class="label">Label</span>: "<span class="id">Modified</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">copyrightdate</span> (string) [<span class="label">Label</span>: "<span class="id">Copyright</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">dateother</span> (string) [<span class="label">Label</span>: "<span class="id">Other</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">edition</span> (string) [<span class="label">Label</span>: "<span class="id">Edition</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">issuance</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+									(none)
+								</span> | <span class="selection-list-item">continuing</span> | <span class="selection-list-item">monographic</span>) [<span class="label">Label</span>: "<span class="id">Issuance</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">frequency</span> (string) [<span class="label">Label</span>: "<span class="id">Frequency</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">language-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#language">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#language">guidelines</a>
+</p>
+<a id="language-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">languages</span> [<span class="label">Label</span>: "<span class="id">mods:language</span>"]<br>
+<span class="label">Uses: </span><a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">languageterms</span> [<span class="label">Label</span>: "<span class="id">Language Terms</span>"]<br>
+<span class="label">Uses: </span><a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">languageterms_language</span> (string) [<span class="label">Label</span>: "<span class="id">Language</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">languageterms_type</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+											(none)
+										</span> | <span class="selection-list-item">text</span> | <span class="selection-list-item">code</span>) [<span class="label">Label</span>: "<span class="id">Type</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">languageterms_authority</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+											(none)
+										</span> | <span class="selection-list-item">iso639-2b</span> | <span class="selection-list-item">rfc3066</span>) [<span class="label">Label</span>: "<span class="id">Authority</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">physicalDescription-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#physicalDescription">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#physicalDescription">guidelines</a>
+</p>
+<a id="physicalDescription-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">physicalDescriptions</span> [<span class="label">Label</span>: "<span class="id">mods:physicalDescription</span>"]<br>
+<span class="label">Uses: </span><a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">form</span> (string) [<span class="label">Label</span>: "<span class="id">Form</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">formauthority</span> (string) [<span class="label">Label</span>: "<span class="id">Authority</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">reformattingquality</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+									(none)
+								</span> | <span class="selection-list-item">access</span> | <span class="selection-list-item">preservation</span> | <span class="selection-list-item">replacement</span>) [<span class="label">Label</span>: "<span class="id">Reformatting Quality</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">internetmediatype</span> (string) [<span class="label">Label</span>: "<span class="id">InternetMediaType</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">extent</span> (string) [<span class="label">Label</span>: "<span class="id">Extent</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">digitalorigin</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">
+									(none)
+								</span> | <span class="selection-list-item">born digital</span> | <span class="selection-list-item">reformatted digital</span>) [<span class="label">Label</span>: "<span class="id">Digital Origin</span>"]<ul class="field"></ul>
+</li>
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">notes</span> [<span class="label">Label</span>: "<span class="id">Notes</span>"]<br>
+<span class="label">Uses: </span><a href="#common-textfield-class">common-textfield-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">abstract-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#abstract">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#abstract">guidelines</a>
+</p>
+<a id="abstract-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">abstracts</span> [<span class="label">Label</span>: "<span class="id">mods:abstract</span>"]<br>
+<span class="label">Uses: </span><a href="#common-textfield-class">common-textfield-class</a>; <a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">tableOfContents-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#tableOfContents">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#tableOfContents">guidelines</a>
+</p>
+<a id="tableOfContents-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">tableOfContentss</span> [<span class="label">Label</span>: "<span class="id">mods:tableOfContents</span>"]<br>
+<span class="label">Uses: </span><a href="#common-textfield-class">common-textfield-class</a>; <a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">note-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#note">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#note">guidelines</a>
+</p>
+<a id="note-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">notes</span> [<span class="label">Label</span>: "<span class="id">mods:note</span>"]<br>
+<span class="label">Uses: </span><a href="#common-textfield-class">common-textfield-class</a>; <a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">targetAudience-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#targetAudience">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#targetAudience">guidelines</a>
+</p>
+<a id="targetAudience-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">targetAudiences</span> [<span class="label">Label</span>: "<span class="id">mods:targetAudience</span>"]<br>
+<span class="label">Uses: </span><a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">value</span> (string) [<span class="label">Label</span>: "<span class="id">targetAudience</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">authority</span> (string) [<span class="label">Label</span>: "<span class="id">Authority</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">subject-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#subject">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#subject">guidelines</a>
+</p>
+<div class="doc">
+				
+<p>This class uses a structured copied from form_model_gui_binding.xml in samples provided with the forms block in Cocoon 2.1.10. The idea is that the elements within a subject element (topic, geographic, etc.) are handled by a single class "subject-widgets-class", which uses a union/case/group structure to deal with the different types. The local-name of the element is bound to the "type" widget, and the union uses the type to determine which group to implement. So, a mods_topic element causes type="mods_topic", which causes the &gt;group id="mods_topic"&lt; to be instanced.</p>
+			
+</div>
+<a id="subject-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">subjects</span> [<span class="label">Label</span>: "<span class="id">mods:subject</span>"]<br>
+<span class="label">Uses: </span><a href="#subject-widgets-class">subject-widgets-class</a>; <a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-linking-elements-class">common-linking-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">authority</span> (string) [<span class="label">Label</span>: "<span class="id">Authority</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">classification-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#classification">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#classification">guidelines</a>
+</p>
+<a id="classification-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">classifications</span> [<span class="label">Label</span>: "<span class="id">mods:classification</span>"]<br>
+<span class="label">Uses: </span><a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">value</span> (string) [<span class="label">Label</span>: "<span class="id">Classification</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">authority</span> (string) [<span class="label">Label</span>: "<span class="id">Authority</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">edition</span> (string) [<span class="label">Label</span>: "<span class="id">Edition</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">xidentifier-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#identifier">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#identifier">guidelines</a>
+</p>
+<div class="doc">
+				
+<p>Note: this class uses "xidentifier" as its id instead of "identifier", because the latter appears to be a reserved word in Cocoon Forms and breaks the form.</p>
+			
+</div>
+<a id="xidentifier-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">xidentifiers</span> [<span class="label">Label</span>: "<span class="id">mods:identifier</span>"]<br>
+<span class="label">Uses: </span><a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">value</span> (string) [<span class="label">Label</span>: "<span class="id">Identifier</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">type</span> (string) [<span class="label">Label</span>: "<span class="id">Type</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">displayLabel</span> (string) [<span class="label">Label</span>: "<span class="id">displayLabel</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">invalid</span> (string) [<span class="label">Label</span>: "<span class="id">invalid</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">location-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#location">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#location">guidelines</a>
+</p>
+<a id="location-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">locations</span> [<span class="label">Label</span>: "<span class="id">mods:location</span>"]<br>
+<span class="label">Uses: </span><a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">physicalLocation</span> (string) [<span class="label">Label</span>: "<span class="id">physicalLocation</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">authority</span> (string) [<span class="label">Label</span>: "<span class="id">Authority</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">phys-displayLabel</span> (string) [<span class="label">Label</span>: "<span class="id">displayLabel</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">url</span> (string) [<span class="label">Label</span>: "<span class="id">URL</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">url-displayLabel</span> (string) [<span class="label">Label</span>: "<span class="id">displayLabel</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">dateLastAccessed</span> (string) [<span class="label">Label</span>: "<span class="id">dateLastAccessed</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">accessCondition-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#accessCondition">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#accessCondition">guidelines</a>
+</p>
+<a id="accessCondition-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">accessConditions</span> [<span class="label">Label</span>: "<span class="id">mods:accessCondition</span>"]<br>
+<span class="label">Uses: </span><a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">value</span> (string) [<span class="label">Label</span>: "<span class="id">accessCondition</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">type</span> (string) [<span class="label">Label</span>: "<span class="id">Type</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">displayLabel</span> (string) [<span class="label">Label</span>: "<span class="id">displayLabel</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">xlink</span> (string) [<span class="label">Label</span>: "<span class="id">xlink</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">part-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#part">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#part">guidelines</a>
+</p>
+<a id="part-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#relatedItem-class">relatedItem-class</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">details</span> [<span class="label">Label</span>: "<span class="id">detail</span>"]<br>
+<span class="label">Uses: </span><a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">details_number</span> (string) [<span class="label">Label</span>: "<span class="id">number</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">details_caption</span> (string) [<span class="label">Label</span>: "<span class="id">caption</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">details_title</span> (string) [<span class="label">Label</span>: "<span class="id">title</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">details_type</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">part</span> | <span class="selection-list-item">volume</span> | <span class="selection-list-item">issue</span> | <span class="selection-list-item">chapter</span> | <span class="selection-list-item">section</span> | <span class="selection-list-item">paragraph</span> | <span class="selection-list-item">track</span>) [<span class="label">Label</span>: "<span class="id">type</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">details_level</span> (integer) [<span class="label">Label</span>: "<span class="id">level</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">extent-start</span> (string) [<span class="label">Label</span>: "<span class="id">start</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">extent-end</span> (string) [<span class="label">Label</span>: "<span class="id">end</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">extent-total</span> (integer) [<span class="label">Label</span>: "<span class="id">total</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">extent-list</span> (string) [<span class="label">Label</span>: "<span class="id">list</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">extent-unit</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">pages</span> | <span class="selection-list-item">minutes</span>) [<span class="label">Label</span>: "<span class="id">unit</span>"]<ul class="field"></ul>
+</li>
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">dates</span> [<span class="label">Label</span>: "<span class="id">Dates</span>"]<br>
+<span class="label">Uses: </span><a href="#common-subject-date-elements-class">common-subject-date-elements-class</a>; <a href="#common-date-elements-class">common-date-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater"></ul>
+</li>
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">texts</span> [<span class="label">Label</span>: "<span class="id">Texts</span>"]<br>
+<span class="label">Uses: </span><a href="#common-textfield-class">common-textfield-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater"></ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">recordInfo-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#recordInfo">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#recordInfo">guidelines</a>
+</p>
+<div class="doc">
+				
+<p>Note: at save time, the first recordContentSource element will be populated with the current user id (from the Cocoon session), and the first recordChangeDate element will be populated with the current time. This is controlled by the javascript widgets "lastModifledBy" and "lastModified" in mods_bind.xml.</p>
+			
+</div>
+<a id="recordInfo-class"></a>
+<br>
+<span class="label">Used by: </span><a href="#core-elements">core-elements</a>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">recordInfos</span> [<span class="label">Label</span>: "<span class="id">mods:recordInfo</span>"]<br>
+<span class="label">Uses: </span><a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">recordContentSources</span> [<span class="label">Label</span>: "<span class="id">recordContentSource</span>"]<br>
+<span class="label">Uses: </span><a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">recordContentSources_value</span> (string) [<span class="label">Label</span>: "<span class="id">Value</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">recordContentSources_authority</span> (string) [<span class="label">Label</span>: "<span class="id">Authority</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">recordCreationDates</span> [<span class="label">Label</span>: "<span class="id">recordCreationDate</span>"]<br>
+<span class="label">Uses: </span><a href="#common-subject-date-elements-class">common-subject-date-elements-class</a>; <a href="#common-date-elements-class">common-date-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater"></ul>
+</li>
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">recordChangeDates</span> [<span class="label">Label</span>: "<span class="id">recordChangeDate</span>"]<br>
+<span class="label">Uses: </span><a href="#common-subject-date-elements-class">common-subject-date-elements-class</a>; <a href="#common-date-elements-class">common-date-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater"></ul>
+</li>
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">recordIdentifiers</span> [<span class="label">Label</span>: "<span class="id">recordIdentifier</span>"]<br>
+<span class="label">Uses: </span><a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">recordIdentifiers_recordIdentifier</span> (string) [<span class="label">Label</span>: "<span class="id">recordIdentifier</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">recordIdentifiers_recordIdentifierSource</span> (string) [<span class="label">Label</span>: "<span class="id">source</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">lastModifiedBy</span> (string) [<span class="label">Label</span>: "<span class="id">Last Modified By</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">lastModified</span> (string)<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">recordChangeDate</span> (string) [<span class="label">Label</span>: "<span class="id">recordChangeDate</span>"]<ul class="field"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">relatedItem-class</span>
+<p class="doc-links">
+<span class="label">MODS Documentation:</span> <a href="http://www.loc.gov/standards/mods/mods-outline.html#relatedItem">outline</a> | <a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#relatedItem">guidelines</a>
+</p>
+<a id="relatedItem-class"></a>
+<br>
+<span class="label">Used by: </span>
+<ul class="class">
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">relatedItems</span> [<span class="label">Label</span>: "<span class="id">mods:relatedItem</span>"]<br>
+<span class="label">Uses: </span><a href="#core-elements">core-elements</a>; <a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater">
+<li class="field">
+<span class="field">field</span>: <span class="id">type</span> (string; <span class="label">with selection list:</span> <span class="selection-list-item">succeeding</span> | <span class="selection-list-item">original</span> | <span class="selection-list-item">host</span> | <span class="selection-list-item">constituent</span> | <span class="selection-list-item">series</span> | <span class="selection-list-item">otherVersion</span> | <span class="selection-list-item">otherFormat</span> | <span class="selection-list-item">isReferencedBy</span>) [<span class="label">Label</span>: "<span class="id">Type</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">displayLabel</span> (string) [<span class="label">Label</span>: "<span class="id">displayLabel</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">xlink</span> (string) [<span class="label">Label</span>: "<span class="id">xlink</span>"]<ul class="field"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">relatedItem_ID</span> (string) [<span class="label">Label</span>: "<span class="id">ID</span>"]<ul class="field"></ul>
+</li>
+<li class="repeater">
+<span class="repeater">repeater</span>: <span class="id">parts</span> [<span class="label">Label</span>: "<span class="id">mods:part</span>"]<br>
+<span class="label">Uses: </span><a href="#part-class">part-class</a>; <a href="#common-language-elements-class">common-language-elements-class</a>; <a href="#common-linking-elements-class">common-linking-elements-class</a>; <a href="#common-controls-class">common-controls-class</a>
+<ul class="repeater"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="class">
+<span class="class">class</span>: <span class="id">core-elements</span><a id="core-elements"></a>
+<br>
+<span class="label">Used by: </span><a href="#relatedItem-class">relatedItem-class</a>
+<br>
+<span class="label">Uses: </span><a href="#titleInfo-class">titleInfo-class</a>; <a href="#name-class">name-class</a>; <a href="#typeOfResource-class">typeOfResource-class</a>; <a href="#genre-class">genre-class</a>; <a href="#originInfo-class">originInfo-class</a>; <a href="#language-class">language-class</a>; <a href="#physicalDescription-class">physicalDescription-class</a>; <a href="#abstract-class">abstract-class</a>; <a href="#tableOfContents-class">tableOfContents-class</a>; <a href="#targetAudience-class">targetAudience-class</a>; <a href="#note-class">note-class</a>; <a href="#subject-class">subject-class</a>; <a href="#classification-class">classification-class</a>; <a href="#xidentifier-class">xidentifier-class</a>; <a href="#location-class">location-class</a>; <a href="#accessCondition-class">accessCondition-class</a>; <a href="#recordInfo-class">recordInfo-class</a>
+<ul class="class"></ul>
+</li>
+<li class="output">
+<span class="output">output</span>: <span class="id">id</span> [<span class="label">Label</span>: "<span class="id">ID</span>"]<ul class="output"></ul>
+</li>
+<li class="field">
+<span class="field">field</span>: <span class="id">tab-state</span> (string)<ul class="field"></ul>
+</li>
+<li class="submit">
+<span class="submit">submit</span>: <span class="id">success</span> [<span class="label">Label</span>: "<span class="id">Submit</span>"]<ul class="submit"></ul>
+</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2005, 2007, 2008 University of Alberta Libraries  
+    
+This file is part of MODS Editor.
+
+MODS Editor is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+MODS Editor is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<mods-samples last-update="2008-02-13">
+	<intro>
+		<p>MODS Editor is a Cocoon package that generates a web form for editing MODS records. It uses the <a
+href="http://cocoon.apache.org/2.1/userdocs/basics/index.html"
+>Cocoon Forms framework</a>. It attempts to provide all the elements in the <a 
+href="http://www.loc.gov/standards/mods/v3/mods-3-2.xsd">MODS 3.2</a> spec (except mods:extension), and it provides a very flexible mechanism for customizing a form to meet the needs of a particular project.</p>
+		<p>The sample records below are taken from the MODS site. You can edit them as you wish; when you submit, though, the changed record will not be saved, it will just be displayed back to you in XML.</p>
+		<p>For more information see <a href="http://www.wallandbinkley.com/quaedam/">my blog</a>. Contact: <a href="mailto:peter.binkley@ualberta.ca">Peter Binkley</a>
+		</p>
+	</intro>
+	<resources>
+		<item link="documentation/html/modseditor.docbook.html">Documentation</item>
+		<item link="documentation/pdf/modseditor.docbook.pdf">Documentation (pdf)</item>
+		<item link="documentation/html/model.html">Classes in the form model</item>
+		<item link="dist/modseditor-10beta.zip">Download zip</item>
+		<item link="dist/modseditor-10beta.tar.gz">Download tar.gz</item>
+	</resources>
+	<localizers-intro>
+		<p>Localizers are a mechanism for adapting the MODS form to the needs of a particular project. Since the main form implements the full range of MODS fields, implementors will typically want to remove those elements that are not used by their project. They may also want to customize certain options, such as selection lists for permissible values in a given field (e.g. note types).</p>
+		<p>To achieve these results, all that is necessary is to write a simple configuration file in XML that represents the desired changes. The MODS Editor framework uses this config file to generate an XSLT stylesheet, which is applied to the Cocoon Forms configuration files (model, binding, and template), ensuring that consistent changes are made to each of them. The stylesheet and the modified Cocoon Forms config files are generated on-the-fly.</p>
+		<p>To see the localizer config file or the XSLT stylesheet that it produces, click the "xml" or "xsl" links for any of the localizers below. The work of the localizer depends heavily on the <a href="documentation/html/model.html">classes</a> used in the Cocoon Forms config.</p>
+	</localizers-intro>
+	<localizer label="Sample" id="sample">
+		<description>
+			<p>This is used to test localization functions. Currently it makes the following changes to the form:</p>
+			<ul>
+				<li>removes common linking elements ("id" and "xlink") from all fields (tests removing a helper class)</li>
+				<li>removes the top-level name element (the Author tab in the form) (tests removing a top-level class)</li>
+				<li>removes the "transliteration" field from the common language elements for all fields that use them (tests removing a field from a helper class)</li>
+				<li>removes the "authority" field from the placeTerm element (tests removing a field nested in a repeater)</li>
+				<li>adds a selection list for the "lang" field in the common language elements (tests adding a selection list to a field in a helper class)</li>
+				<li>removes the "xlink" field from the top-level element "note"'s implementation of the common textfield class (tests removing a field from an instance of a helper class)</li>
+				<li>adds a selection list for the type field in the top-level element "note" (tests adding a selection list to a field in an instance of a helper class)</li>
+			</ul>
+		</description>
+	</localizer>
+	<item type="Book" file="mods99042030"/>
+	<item type="Book chapter" file="modsbook-chapter"/>
+	<item type="Serial" file="mods86646620"/>
+	<item type="Article in a serial" file="modsjournal"/>
+	<item type="Serial special issue" file="modsspecial-issue"/>
+	<item type="Serial supplement" file="modssupplement"/>
+	<item type="Electronic serial" file="modsejournal"/>
+	<item type="Web document" file="mods98801326"/>
+	<item type="Conference publication" file="mods97129132"/>
+	<item type="Map" file="mods83691515"/>
+	<item type="Motion picture" file="mods80700998"/>
+	<item type="Music" file="mods85753651"/>
+	<item type="Sound recording" file="mods94759273"/>
+	<item type="Mixed material" file="mods83001404"/>
+	<work>
+		<element name="titleInfo" done="yes"/>
+		<element name="name" done="yes"/>
+		<element name="typeOfResource" done="yes"/>
+		<element name="genre" done="yes"/>
+		<element name="originInfo" done="yes"/>
+		<element name="language" done="yes"/>
+		<element name="physicalDescription" done="yes"/>
+		<element name="abstract" done="yes"/>
+		<element name="tableOfContents" done="yes"/>
+		<element name="targetAudience" done="yes"/>
+		<element name="note" done="yes"/>
+		<element name="subject" done="yes"/>
+		<element name="classification" done="yes"/>
+		<element name="relatedItem" done="yes"/>
+		<element name="identifier" done="yes"/>
+		<element name="location" done="yes"/>
+		<element name="accessCondition" done="yes"/>
+		<element name="extension" done="no"/>
+		<element name="recordinfo" done="yes"/>
+	</work>
+</mods-samples>

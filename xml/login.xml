@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2005, 2007, 2008 University of Alberta Libraries  
+    
+This file is part of MODS Editor.
+
+MODS Editor is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+MODS Editor is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+	<head>
+		<style type="text/css">
+			h1 {color: blue; text-decoration: italic; text-align: center;}
+			a:link {color: green; text-decoration: none;}
+			a:visited {color: green; text-decoration: none;}
+			a:hover {color: green; text-decoration: underline;}
+			body { text-align: center;}
+			p {font-family: verdana; font-size: 16px;}
+		</style>
+		<title>Make up a User ID</title>
+	</head>
+	<body>
+		<h1>Make up a User ID</h1>
+		[ <a href="login">Login</a> - <a href="do-logout">Logout</a> ]
+		<p>Please enter a  username - anything will do, it's just needed to test the handling of the recordContentSource field. (In our application the recordContentSource field will be populated with the user id of the person who last edited the record).</p>
+		<form action="do-login" method="post">
+			<p>Username: <input type="text" name="username"/>
+			</p>
+			<p>
+				<input type="submit"/>
+			</p>
+		</form>
+	</body>
+</html>

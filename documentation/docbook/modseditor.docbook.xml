@@ -1,0 +1,929 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<!--
+Copyright 2005, 2007, 2008 University of Alberta Libraries  
+    
+This file is part of MODS Editor.
+
+MODS Editor is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+MODS Editor is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<article>
+  <title>Cocoon Forms MODS Editor</title>
+
+  <articleinfo>
+    <productname>MODS Editor</productname>
+
+    <date>2009-02-15</date>
+
+    <releaseinfo>1.0beta</releaseinfo>
+  </articleinfo>
+
+  <section>
+    <title>Introduction</title>
+
+    <para>MODS Editor is a Cocoon package that generates a web form for
+    editing MODS records. It uses the <ulink
+    url="http://cocoon.apache.org/2.1/userdocs/basics/index.html">Cocoon Forms
+    framework</ulink>. It attempts to provide all the elements in the <ulink
+    url="http://www.loc.gov/standards/mods/v3/mods-3-2.xsd">MODS 3.2</ulink>.
+    spec (except <code>mods:extension</code>), and it provides a very flexible
+    mechanism for customizing a form to meet the needs of a particular
+    project.</para>
+  </section>
+
+  <section id="general">
+    <title>General Configuration</title>
+
+    <para>Steps to get MODS Editor working in your instance of <ulink
+    url="http://cocoon.apache.org/">Cocoon</ulink> 2.1.10:</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Unzip the package to some convenient location</para>
+      </listitem>
+
+      <listitem>
+        <para>Add the location of the package to Cocoon's
+        <filename>mount-table.xml</filename> with an entry like this:</para>
+
+        <para><blockquote>
+            <para><literallayout><code><literal>&lt;mount uri-prefix="modseditor" src="file://path/to/modseditor-directory/"/&gt;</literal></code></literallayout></para>
+          </blockquote></para>
+      </listitem>
+
+      <listitem>
+        <para>Access MODS Editor at
+        <filename>http://your.server:8080/cocoon/modseditor/</filename>
+        (adjusting server, port and Cocoon servlet path as necessary)</para>
+      </listitem>
+    </orderedlist>
+
+    <para>You should now be able to edit the included sample MODS records. The
+    demo interface allows you to do any editing you like, but when you submit
+    the changed record will simply be displayed back to you; it will not be
+    saved. (See below for how to add the ability to
+    save records.)</para>
+
+    <note>
+      <para>MODS Editor hasn't yet been tested with the latest Cocoon version
+      2.1.11 or with the 2.2 branch.</para>
+    </note>
+
+    <note>
+      <para>Cocoon must be set up to use UTF-8; see the <ulink
+      url="http://wiki.apache.org/cocoon/RequestParameterEncoding">Cocoon
+      wiki</ulink> for instructions on how to do this. Steps 1, 2, and 5 in
+      that document are handled within MODS Editor; but you may need to take
+      care of 3 and 4, depending on your servlet container. I use Tomcat 5.5,
+      and found that step 3 is taken care of by editing Cocoon's web.xml to
+      change the form-encoding init-param to UTF-8, and step 4 wasn't needed,
+      but your mileage may vary. If you don't do this, the form will function
+      but non-ISO-8859-1 characters will be garbled.</para>
+    </note>
+  </section>
+
+  <section id="functionality">
+    <title>Description of functionality</title>
+
+    <para>The functionality of the interface is fairly simple, but some notes
+    may be useful.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>The Cocoon Forms tabbing feature is used, so each top-level
+        element has a tab in the left column. You can only see one type of
+        top-level element on the screen at a time.</para>
+      </listitem>
+
+      <listitem>
+        <para>Some custom javascript (in
+        <filename>mods_template.jx</filename>) updates the counts beside each
+        top-level element in the tabs menu when items are added or deleted
+        from the relevant repeater. Note that the javascript is triggered by
+        an onclick rather than by the successful completion of the
+        operation</para>
+      </listitem>
+
+      <listitem>
+        <para>Every top-level MODS element is assumed to be repeatable</para>
+      </listitem>
+
+      <listitem>
+        <para>Graphic labels appear to the left of elements in repeaters (both
+        top-level and subrepeaters); these are handled as background images in
+        the CSS stylesheet. They are generated by ImageMagick, which is driven
+        by an Ant script in the images directory; a different colour scheme or
+        different text labels could be implemented by editing that
+        build.xml.</para>
+      </listitem>
+
+      <listitem>
+        <para>The out-of-the-box form contains all MODS elements; it can be
+        configured for a particular project using the localization feature
+        (see below)</para>
+      </listitem>
+
+      <listitem>
+        <para>Within the recordInfo top-level element, the recordContentSource
+        element will automatically be populated with the user id of the
+        current user (drawn from the Cocoon session), and the recordChangeDate
+        will be populated with the current time. These operations happen at
+        save time and are governed by the <code>fb:javascript</code> widgets
+        "lastModified" and "lastModifiedBy" in
+        <filename>mods_bind.xml</filename>. Either or both of these changes
+        can be prevented by suppressing the "lastModified" or "lastModifiedBy"
+        fields in the recordInfo element, using localization.</para>
+      </listitem>
+
+      <listitem>
+        <para>The "common-controls-class" in
+        <filename>mods_model.xml</filename> and
+        <filename>mods_template.jx</filename> is used by every repeater, and
+        provides the row of controls (+, -, up arrow, down arrow) that appear
+        in each row. jx:if conditions in <filename>mods_template.jx</filename>
+        control its appearance, suppressing inapplicable controls (e.g. no up
+        arrow for the first row). This class does not appear in
+        <filename>mods_bind.xml</filename> because its widgets do not bind to
+        any values in the MODS record.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section id="data">
+    <title>Data handling</title>
+
+    <para>MODS records are provided to the form by the "mods-data/**" pipeline
+    in sitemap.xmap. Because Cocoon Forms does not handle namespaces properly,
+    this pipeline includes an xsl transformation (strip-namespaces.xsl) to
+    replace the MODS namespace with a prefix: so "mods:subject" becomes
+    "mods_subject". All of the bindings in <filename>mods_bind.xml</filename>
+    depend on this prefix. The xsl also makes a couple of minor changes (e.g.
+    converting "yes/no" values to "true/false" so they can be handled by
+    boolean widgets). All of these changes are reversed in the success
+    pipeline (which handles the uploaded record when the user submits the
+    form), by a series of transformations. In order to get a clean xml file,
+    the "mods_" prefix is converted to the "mods:" namespace, which is then
+    removed from individual elements and provided in the root element as the
+    default namespace.</para>
+  </section>
+
+  <section id="design">
+    <title>Design patterns</title>
+
+    <para>MODS Editor imposes rigorous design patterns on similar structures
+    in the model, binding, and template files, especially with regard to
+    repeaters.</para>
+
+    <section>
+      <title>Top-level element</title>
+
+      <para>A simple top-level element looks like this:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>note the naming conventions: for the "genre" element, the
+          class is named "genre-class" and the repeater is named "genres"
+          (this applies even to tableOfContents, whose repeater is
+          "tableOfContentss"). In the template, the div immediately under
+          ft:repeater-rows has the class "row toplevel genre". The "add-to"
+          action has the name "add-to-genres".</para>
+        </listitem>
+
+        <listitem>
+          <para>the top-level element div uses H4; the individual rows use
+          H5</para>
+        </listitem>
+
+        <listitem>
+          <para>In the template, note the dynamic elements, using jx variables
+          and functions:<itemizedlist>
+              <listitem>
+                <para>in the main div, the class contains
+                "<code>empty-block-${repeater.getSize() == 0}</code>". This
+                will give "empty-block-true" for an empty repeater and
+                "empty-block-false" for one that has rows, allowing us to
+                apply different formatting in the CSS</para>
+              </listitem>
+
+              <listitem>
+                <para>the H5 heading in the row contains the number of that
+                row: "<code>&lt;jx:out value="${repeaterLoop.index +
+                1}"/&gt;</code>", giving headings like "Genre 1", "Genre 2",
+                etc.</para>
+              </listitem>
+
+              <listitem>
+                <para>the repeater is wrapped in a condition: "<code>&lt;jx:if
+                test="${repeater.getSize() &amp;gt; 0}"&gt;</code>". It wll
+                only be rendered if it contains rows</para>
+              </listitem>
+
+              <listitem>
+                <para>the add-to widget is wrapped in the converse condition:
+                "<code>&lt;jx:if test="${repeater.getSize() ==
+                0}"&gt;</code>". It will only be rendered if the repeater is
+                empty.</para>
+              </listitem>
+            </itemizedlist></para>
+        </listitem>
+
+        <listitem>
+          <para>"common-element-*" classes are used to provide elements that
+          are common to many top-level elements</para>
+        </listitem>
+      </itemizedlist>
+
+      <section>
+        <title>Model</title>
+
+        <para><blockquote>
+            <para><literallayout><code><literal>&lt;fd:class id="genre-class"&gt;
+&nbsp;&nbsp;&lt;fd:widgets&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:repeater id="genres" orderable="true"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:label&gt;mods:genre&lt;/fd:label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:widgets&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:field id="genre"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:label&gt;Genre&lt;/fd:label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:datatype base="string"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fd:field&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:field id="authority"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:label&gt;Authority&lt;/fd:label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:datatype base="string"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:selection-list&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:item value=""&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:label&gt;(none)&lt;/fd:label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fd:item&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:item value="rbgenr"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:label&gt;rbgenr&lt;/fd:label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fd:item&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:item value="marcgt"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:label&gt;marcgt&lt;/fd:label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fd:item&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fd:selection-list&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fd:field&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:new id="common-language-elements-class"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:new id="common-controls-class"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fd:widgets&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fd:repeater&gt;
+&nbsp;&nbsp;&lt;/fd:widgets&gt;
+&lt;/fd:class&gt;</literal></code></literallayout></para>
+          </blockquote></para>
+      </section>
+
+      <section>
+        <title>Binding</title>
+
+        <para><blockquote>
+            <para><literallayout><code><literal>&lt;fb:class id="genre-class"&gt;
+&nbsp;&nbsp;&lt;fb:repeater id="genres" row-path="mods_genre" parent-path="."&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fb:value id="genre" path="."/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fb:value id="authority" path="@authority"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fb:new id="common-language-elements-class"/&gt;
+&nbsp;&nbsp;&lt;/fb:repeater&gt;
+&lt;/fb:class&gt;</literal></code></literallayout></para>
+          </blockquote></para>
+      </section>
+
+      <section>
+        <title>Template</title>
+
+        <para><blockquote>
+            <para><literallayout><code><literal>&lt;ft:class id="genre-class"&gt;
+&nbsp;&nbsp;&lt;ft:repeater id="genres"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="block empty-block-${repeater.getSize() == 0}"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:widget-label id="../genres"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/h4&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;jx:if test="${repeater.getSize() &amp;gt; 0}"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="repeater"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:repeater-rows&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="row toplevel genre"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:widget-label id="../../genres"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;jx:out value="${repeaterLoop.index + 1}"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/h5&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:widget-label id="genre"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:widget id="genre"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fi:styling size="80"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ft:widget&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;jx:out value="${divider}"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:widget-label id="authority"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:widget id="authority"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:new id="common-language-elements-class"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:new id="common-controls-class"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ft:repeater-rows&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/jx:if&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;jx:if test="${repeater.getSize() == 0}"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:widget id="../add-to-genres"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/jx:if&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+&nbsp;&nbsp;&lt;/ft:repeater&gt;
+&lt;/ft:class&gt;</literal></code></literallayout></para>
+          </blockquote></para>
+      </section>
+    </section>
+
+    <section>
+      <title>Subrepeater</title>
+
+      <para>Subrepeaters are repeaters contained within top-level elements,
+      e.g. namePart elements within a name element. They also have a
+      distinctive pattern.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>where the element is named "mods:note", the repeater has the
+          id "notes"; the "add-to" action has the id "add-to-notes".</para>
+        </listitem>
+
+        <listitem>
+          <para>the number of the row is added dynamically to the H6 header,
+          as with top-level elements</para>
+        </listitem>
+
+        <listitem>
+          <para>the repeater and the add-to button are not controlled
+          dynamically as in top-level elemtns, as the "repeater" object
+          doesn't seem to function in subrepeaters (see to-do list
+          below)</para>
+        </listitem>
+
+        <listitem>
+          <para>subsubrepeaters work like subrepeaters</para>
+        </listitem>
+
+        <listitem>
+          <para>widgets within subrepeaters and subsubrepeaters must have ids
+          that are unique within their class, so that they can be identified
+          in localization (e.g. see ids like "places_placeterms_authority" in
+          originInfo-class).</para>
+        </listitem>
+      </itemizedlist>
+
+      <section>
+        <title>Model</title>
+
+        <para><blockquote>
+            <para><literallayout><code><literal>&lt;fd:repeater id="notes" orderable="true"&gt;
+&nbsp;&nbsp;&lt;fd:label&gt;Notes&lt;/fd:label&gt;
+&nbsp;&nbsp;&lt;fd:widgets&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:new id="common-textfield-class"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:new id="common-controls-class"/&gt;
+&nbsp;&nbsp;&lt;/fd:widgets&gt;
+&lt;/fd:repeater&gt;
+&lt;fd:repeater-action id="add-to-notes" action-command="add-row" repeater="notes"&gt;
+&nbsp;&nbsp;&lt;fd:label&gt;New note&lt;/fd:label&gt;
+&lt;/fd:repeater-action&gt;the </literal></code></literallayout></para>
+          </blockquote></para>
+      </section>
+
+      <section>
+        <title>Binding</title>
+
+        <para><blockquote>
+            <para><literallayout><code><literal>&lt;fb:repeater id="notes" row-path="mods_note" parent-path="."&gt;
+&nbsp;&nbsp;&lt;fb:new id="common-textfield-class"/&gt;
+&lt;/fb:repeater&gt;</literal></code></literallayout></para>
+          </blockquote></para>
+      </section>
+
+      <section>
+        <title>Template</title>
+
+        <para><blockquote>
+            <para><literallayout><code><literal>&lt;div class="block"&gt;
+&nbsp;&nbsp;&lt;ft:repeater id="notes"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="block empty-repeater-${repeater.getSize() == 0}"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:repeater-rows&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="row subrepeater physicalDescription-note"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h6&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:widget-label id="../../notes"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;jx:out value="${repeaterLoop.index + 1}"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/h6&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:new id="common-textfield-class"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:new id="common-controls-class"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ft:repeater-rows&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+&nbsp;&nbsp;&lt;/ft:repeater&gt;
+&lt;/div&gt;
+&lt;ft:widget id="add-to-notes"/&gt;</literal></code></literallayout></para>
+          </blockquote></para>
+      </section>
+    </section>
+  </section>
+
+  <section id="localization">
+    <title>Extending the demo: localization</title>
+
+    <para>MODS Editor includes a basic localization function. This is used to
+    customize the form for a particular project. It can remove specified
+    elements that are not used, and it can add selection lists to specified
+    elements. Any element in a source MODS record that is not included in the
+    form is retained unchanged; this allows an implementation to use different
+    localizations for different purposes. For example, one might provide a
+    simple bare-bones record for quick data entry, while another might provide
+    full coverage for detail work, or just the subject fields for use by a
+    metadata specialized checking consistency.</para>
+
+    <para>The localization process works by creating an XSL stylesheet on the
+    fly from the specified localization config file, and applying it to the
+    Cocoon Forms model, binding and template files when the form is built. The
+    dynamic stylesheet contains templates to make all the necessary changes to
+    each of the Cocoon Forms files. It is applied in a cocoon: protocol
+    pipeline.</para>
+
+    <para>The dynamic stylesheet depends on the consistent design patterns
+    discussed above, so care must be taken when modifying the Cocoon Forms
+    files.</para>
+
+    <section>
+      <title>Functions</title>
+
+      <section>
+        <title>Suppress</title>
+
+        <para>The <code>&lt;suppress&gt;</code> element contains classes and
+        fields that are to be removed. Entries may be in these forms:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para><code>&lt;class&gt;common-linking-elements&lt;/class&gt;</code>
+            - remove the specified class wherever it occurs, both the
+            declaration and any instantiation</para>
+          </listitem>
+
+          <listitem>
+            <para><code>&lt;field
+            class="common-language-elements"&gt;transliteration&lt;/field&gt;</code>
+            - removes the specified field from the specified class. The field
+            may be a widget wtihin a repeater or subrepeater.</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+
+      <section>
+        <title>SelectionList</title>
+
+        <para>A <code>&lt;selectionlist&gt;</code> element adds a selection
+        list to a field within a class. There may be any number of
+        <code>&lt;selectionlist&gt;</code> elements in a localization config.
+        The element has a "<code>class</code>" attribute specifying the class
+        to which it applies: e.g. <code>&lt;selectionlist
+        class="common-language-elements"&gt;</code>. Each
+        <code>&lt;selectionlist&gt;</code> may contain any number of
+        <code>&lt;field&gt;</code> elements, each specifying a selection list
+        for a given field:</para>
+
+        <blockquote>
+          <para><literallayout><code><literal>&lt;field id="lang"&gt;
+&nbsp;&nbsp;&lt;item value=""&gt;(no language)&lt;/item&gt;
+&nbsp;&nbsp;&lt;item value="eng"&gt;English&lt;/item&gt;
+&nbsp;&nbsp;&lt;item value="fre"&gt;French&lt;/item&gt;
+&nbsp;&nbsp;&lt;styling/&gt;
+&lt;/field&gt;</literal></code></literallayout></para>
+        </blockquote>
+
+        <para>Each <code>&lt;item&gt;</code> element will produce an
+        <code>&lt;fd:item&gt;</code> element in the model with the appropriate
+        <code>value</code> attribute and <code>&lt;fd:label&gt;</code>. The
+        &lt;styling&gt; element will cause all its attributes to be copied
+        into an <code>&lt;fi:styling&gt;</code> element.</para>
+      </section>
+
+      <section>
+        <title>Subclass</title>
+
+        <para>The <code>&lt;subclass&gt;</code> element is used to force the
+        system to "subclass" a given class, i.e. to declare a copy of it,
+        which is customized for a particular instantiation. For example, the
+        "common-textfield-class" is instantiated in several other classes that
+        contain textareas. If you modify it using &lt;suppress&gt; or
+        &lt;selectionlist&gt; elements, the changes will apply to every
+        intance; so if you want to change only one instance (say the
+        note-class), you need to subclass it. There may be any number of
+        &lt;subclass&gt; elements, and they may contain &lt;suppress&gt; and
+        &lt;selectionlist&gt; elements that will be applied within the
+        subclass. The form is this: &lt;subclass class="common-textfield"
+        userclasses="note"&gt;. The class element specifies the class to be
+        subclassed, and userclasses contains a space-delimited list of target
+        classes which are to use the subclass.</para>
+      </section>
+
+      <section>
+        <title>Insert</title>
+
+        <para>The &lt;insert&gt; element causes a new widget to be inserted at
+        a specified position in the model, with all the necessary changes to
+        the binding and template. It also allows insertion of xsl templates
+        into the styling xsl stylesheet. The &lt;insert&gt; element has a
+        class attribute identifying the class into which the insertion is to
+        be made, and up to five subelements: &lt;path&gt;, &lt;model&gt;,
+        &lt;binding&gt;, &lt;template&gt;, and &lt;xslt&gt;.</para>
+
+        <para>The &lt;path&gt; element contains instructions to build the
+        xpath leading from the main class down to the existing element that
+        anchors the insertion. It has a position attribute with value "before"
+        or "after", indicating the position of the insertion relative to the
+        anchor element. The path consists of any number of &lt;repeater&gt;
+        elements (indicating nested repeaters) and a final &lt;widget&gt; or &lt;new&gt;;
+        element. All these elements have id attributes that must match the ids
+        of corresponding elements in the template, binding and model. The
+        anchor element will be fd:field in the model, fb:value in the binding,
+        and ft:widget in the template. In some cases it may be desirable to
+        anchor on another template element with the same id, e.g. on
+        ft:widget-label instead of ft:widget. This is done by adding a
+        template-element attribute to the &lt;widget&gt; element in the path,
+        containing the qualified name of the deisired element, e.g.
+        "ft:widget-element". In place of &lt;widget&gt;, &lt;new&gt; may
+        be used as the final element in the path, matching fd:new, fb:new and ft:new.</para>
+
+        <para>The &lt;model&gt;, &lt;binding&gt; and &lt;template&gt; elements
+        contain the code to be inserted in the specified form file, exactly as
+        it should appear. The &lt;template&gt; section may contain jx
+        statements.</para>
+
+        <para>The &lt;xslt&gt; element contains xsl code to be inserted at the
+        end of the styling stylesheet. Because of the complexity of the
+        workflow here (we are using a stylesheet to generate a second
+        stylesheet to process a third stylesheet), we must take care to
+        prevent misunderstandings of the xsl namespace. Withing the
+        localization configuration, all xsl elements that are meant to be
+        inserted into the styling stylesheet must have the namespace
+        "proto-xsl" (see the sample below).</para>
+
+        <para>In the example, we create a new field called "GoogleLink" in the
+        xidentifier class, and bind it (load-only) to the value of the
+        identifier. We insert it before the "type" field in the "xidentifiers"
+        repeater. We create a new xsl template to transform this value into an
+        isbn-based link to Google's book search. Of course, we only want to
+        display this field if the identifier is in fact an isbn, so we use a
+        jx:if statement to test this in the template. You can see this link in
+        action in the localized version of the sample book record.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Sample Localization File</title>
+
+      <para><blockquote>
+          <para><literallayout><code><literal>&lt;localize
+&nbsp;&nbsp;xmlns:fb="http://apache.org/cocoon/forms/1.0#binding" 
+&nbsp;&nbsp;xmlns:fd="http://apache.org/cocoon/forms/1.0#definition" 
+&nbsp;&nbsp;xmlns:ft="http://apache.org/cocoon/forms/1.0#template" 
+&nbsp;&nbsp;xmlns:fi="http://apache.org/cocoon/forms/1.0#instance" 
+&nbsp;&nbsp;xmlns:jx="http://apache.org/cocoon/templates/jx/1.0" 
+&nbsp;&nbsp;xmlns:y="proto-xsl"
+&gt;
+&nbsp;&nbsp;&lt;suppress&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;class&gt;common-linking-elements&lt;/class&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;class&gt;name&lt;/class&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;field class="common-language-elements"&gt;transliteration&lt;/field&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- nested field --&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;field class="originInfo"&gt;places_placeterms_authority&lt;/field&gt;
+&nbsp;&nbsp;&lt;/suppress&gt;
+&nbsp;&nbsp;&lt;selectionlist class="common-language-elements"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;field id="lang"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item value=""&gt;(no language)&lt;/item&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item value="eng"&gt;English&lt;/item&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item value="fre"&gt;French&lt;/item&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;styling/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/field&gt;
+&nbsp;&nbsp;&lt;/selectionlist&gt;
+&nbsp;&nbsp;&lt;!-- note: userclasses can be a space-delimited list of class names --&gt;
+&nbsp;&nbsp;&lt;subclass class="common-textfield" userclasses="note"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;suppress&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;field&gt;xlink&lt;/field&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/suppress&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;selectionlist&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;field id="type"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item value=""&gt;(no type)&lt;/item&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item value="type1"&gt;type 1&lt;/item&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item value="type2"&gt;type 2&lt;/item&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;styling/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/field&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/selectionlist&gt;
+&nbsp;&nbsp;&lt;/subclass&gt;
+&nbsp;&nbsp;&lt;!-- insert links to Google Books for isbn's --&gt;
+&nbsp;&nbsp;&lt;insert class="xidentifier"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;path position="before"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- note: path elements will be concatenated with "//", so you don't have to be complete --&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;repeater id="xidentifiers"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- use @template-element to anchor the insertion on a different template element, 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.g. ft:widget-label --&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;widget id="type" template-element="ft:widget-label"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/path&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;model&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:field id="GoogleLink"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:label&gt;Google Books&lt;/fd:label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fd:datatype base="string"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fd:field&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/model&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;binding&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fb:value id="GoogleLink" path="." direction="load"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/binding&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;template&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- need jx:if statement in order to display this only if type=isbn --&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;jx:if test="${widget.getChild('type').getValue() == 'isbn'}"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="float: right; padding: 5px; border: 1px solid black; margin: 5px;"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ft:widget id="GoogleLink"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fi:styling type="url"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ft:widget&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/jx:if&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/template&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xslt&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;y:template match="fi:field[fi:styling/@type='url']"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a target="_new"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;y:attribute name="href"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://books.google.com/books?vid=ISBN&lt;y:value-of select="fi:value"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/y:attribute&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;y:value-of select="fi:label"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/y:template&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xslt&gt;
+&nbsp;&nbsp;&lt;/insert&gt;
+&lt;/localize&gt;</literal></code></literallayout></para>
+        </blockquote></para>
+    </section>
+  </section>
+
+  <section id="saving">
+    <title>Extending the demo: saving the modified record</title>
+
+    <para>In the demo, the edited record is not saved, but simply displayed
+    back to you. This behaviour is controlled by the "mods-success-pipeline".
+    There are a couple of ways to add the ability to save the file, depending
+    on whether it resides in the file system or was loaded from a network
+    connection and needs to be POSTed back to a WebDAV or other HTTP-based
+    service.</para>
+
+    <section>
+      <title>Saving to a file</title>
+
+      <para>This process uses the <ulink
+      url="http://cocoon.apache.org/2.1/userdocs/sourcewriting-transformer.html">source-writing
+      transformer</ulink> to write the MODS record to a file.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Uncomment the "write-source" transformer configuration in your
+          <filename>sitemap.xmap</filename>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Set the global variable "repo" to the path of the directory
+          where files should be saved. (Make sure this directory is writable
+          by the servlet engine, of course). The path may be absolute or
+          relative to the directory where <filename>sitemap.xmap</filename>
+          resides.</para>
+        </listitem>
+
+        <listitem>
+          <para>Uncomment the "write-source" section of the success
+          pipeline:</para>
+
+          <blockquote>
+            <para><literallayout><code><literal>&lt;map:transform src="xsl/source-writer.xsl"&gt;
+&nbsp;&nbsp;&lt;map:parameter name="documentURI" value="{flow-attribute:documentURI}"/&gt; 
+&nbsp;&nbsp;&lt;map:parameter name="repo" value="{global:repo}"/&gt; 
+&lt;/map:transform&gt;
+&lt;map:transform type="write-source"/&gt;</literal></code></literallayout></para>
+          </blockquote>
+        </listitem>
+
+        <listitem>
+          <para>The stylesheet <filename>source-writer.xsl</filename> wraps a
+          copy of the MODS record in write-source directives indicating where
+          and how it should be saved; the write-source transformer executes
+          these directives and inserts the results of the save operatiion
+          (which are therefore available for display at the end of the
+          pipeline).</para>
+        </listitem>
+
+        <listitem>
+          <para>If you want the revised record to overwrite the original, it
+          is best to modify the mods-data pipeline to use the global variable
+          "repo" as well (see the comment there in the sitemap).</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>POSTing to an HTTP interface</title>
+
+      <para>In this example we'll use the <ulink
+      url="http://www.wallandbinkley.com/quaedam/?p=104">WebDAV
+      transformer</ulink> to POST to a WebDAV server; the method will work for
+      any interface that accepts POSTs (a Solr index, an eXist database, etc.
+      etc.). It would be easy to transform the MODS record into some other
+      format while populating the WebDAV section, e.g. to create a Solr index
+      document.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Make sure that Cocoon was compiled with the WebDAV block
+          enabled. If so, the necessary transformer should be configured in
+          the main Cocoon sitemap, so you don't need to alter the MODS Editor
+          sitemap.</para>
+        </listitem>
+
+        <listitem>
+          <para>Set the global variable "webdav" to the base URL of your
+          WebDAV service.</para>
+        </listitem>
+
+        <listitem>
+          <para>Uncomment the WebDAV section of the success pipeline:</para>
+
+          <blockquote>
+            <para><literallayout><code><literal>&lt;map:transform src="xsl/webdav.xsl"&gt;
+&nbsp;&nbsp;&lt;map:parameter name="documentURI" value="{flow-attribute:documentURI}"/&gt; 
+&nbsp;&nbsp;&lt;map:parameter name="webdav" value="{global:webdav}"/&gt;
+&lt;/map:transform&gt;
+&lt;map:transform type="webdav"/&gt;</literal></code></literallayout></para>
+          </blockquote>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Reporting Results</title>
+
+      <para>As it moves through the success pipeline the MODS record is
+      contained in a &lt;wrapper&gt; element, which also contains the
+      write-source and webdav instructions. When the instructions are executed
+      by appropriate transformers, they are replaced in the XML by statements
+      of the results of the operations. The stylesheet
+      <filename>saveResult.xsl</filename> displays these results in
+      HTML.</para>
+    </section>
+  </section>
+
+  <section id="authentication">
+    <title>Extending the demo: authentication</title>
+
+    <para>MODS Editor is configured to use Cocoon's <ulink
+    url="http://cocoon.apache.org/2.1/developing/webapps/authentication.html">authentication
+    framework</ulink>.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>The authentication and all form continuations are stored in the
+        user's <ulink
+        url="http://cocoon.apache.org/2.1/developing/webapps/session.html">session</ulink>,
+        which is controlled by the servlet container. (So if you want to
+        change the session time-out, you'll have to do it in the servlet
+        container).</para>
+      </listitem>
+
+      <listitem>
+        <para>By default MODS Editor does not ask for or pay attention to
+        passwords: any user id is accepted.</para>
+      </listitem>
+
+      <listitem>
+        <para>To add true authentication, you must do the following:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Add a password field to the login form, named
+            "password"</para>
+          </listitem>
+
+          <listitem>
+            <para>Modify the "authenticate" pipeline to provide an
+            authoritative answer by testing the id and password. The easiest
+            way to do this is to add users to the
+            <filename>users/users.xml</filename> file, and uncomment the
+            condition in <filename>xsl/authenticate.xsl</filename>:</para>
+
+            <blockquote>
+              <para><literallayout><code>&lt;xsl:if test="/users/user[ID = $ID and @password = $password"&gt;
+&nbsp;&nbsp;&lt;ID&gt;&lt;xsl:value-of select="$ID"/&gt;&lt;/ID&gt;
+&lt;/xsl:if&gt;</code></literallayout></para>
+            </blockquote>
+          </listitem>
+
+          <listitem>
+            <para>If you want to use some other means of authenticating IDs
+            and passwords, read about "<ulink
+            url="http://cocoon.apache.org/2.1/developing/webapps/authentication/authenticating_user.html">authentication
+            resources</ulink>"</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section id="production">
+    <title>Putting MODS Editor into production</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>Set up a method for saving the modified records (see
+        above)</para>
+      </listitem>
+
+      <listitem>
+        <para>Set up an authentication method (see above)</para>
+      </listitem>
+
+      <listitem>
+        <para>In sitemap.xmap, add the attribute "internal-only='true'" to the
+        map:pipeline element that contains all the internal pipelines (it's
+        identified by a comment "Internal Pipelines"). This prevents these
+        pipelines from being accessed by users, on the security principle of
+        not exposing internals needlessly.</para>
+      </listitem>
+
+      <listitem>
+        <para>If necessary, localize the form definition and the CSS (see
+        above)</para>
+      </listitem>
+
+      <listitem>
+        <para>Don't forget to set up your production instance of Cocoon to
+        handle UTF-8.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section id="todo">
+    <title>Desiderata</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>go through the MODS elements in the form with a fine-tooth comb
+        and correct any remaining errors in implementation</para>
+      </listitem>
+
+      <listitem>
+        <para><ulink type=""
+        url="http://cocoon.apache.org/2.1/userdocs/widgetconcepts/validation.html">validation</ulink>
+        for various elements, configurable by localization process</para>
+      </listitem>
+
+      <listitem>
+        <para>help (populate <code>fd:help</code> elements in individual
+        elements in model with text from MODS site)</para>
+      </listitem>
+
+      <listitem>
+        <para>update to <ulink
+        url="http://www.loc.gov/standards/mods/changes-3-3.html">MODS
+        3.3</ulink>; adjust the form according to the MODS version as
+        specified within the record</para>
+      </listitem>
+
+      <listitem>
+        <para>test with Cocoon 2.1.11 and Cocoon 2.2</para>
+      </listitem>
+
+      <listitem>
+        <para>formatting fix: make subrepeaters suppress their "New" button
+        when the subrepeater isn't empty, the way main repeaters do)</para>
+      </listitem>
+
+      <listitem>
+        <para>More localization features:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>change labels</para>
+          </listitem>
+
+          <listitem>
+            <para>add or replace links to css stylesheets</para>
+          </listitem>
+
+          <listitem>
+            <para>add arbitrary javascript binding logic to specific fields,
+            like the timestamp binding</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>add internationalization: replace all labels in the model and
+        any text in the template with i18n: tags and manage them all in a
+        language file (as well as making it easier to add languages, this
+        would make it easier to customize the labels)</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+</article>

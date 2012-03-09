@@ -1,0 +1,30 @@
+from upper left, going down right
+
+convert -background lightblue -fill blue -font Corbel -pointsize 24 -size 360x -rotate 45.0 caption:"MODS" mods.gif
+
+from lower left, going up right:
+
+convert -background lightgreen -fill green -font Corbel -pointsize 24 -size 360x -rotate -45.0 -gravity SouthWest caption:"titleInfo" titleInfo.gif
+
+
+Lighter:
+
+convert -background #ddf -fill #aaf -font Corbel -pointsize 24 -size 150x -rotate 45.0 caption:"MODS" mods.gif
+
+convert -background #dfd -fill #7f7 -font Corbel -pointsize 24 -size 150x -rotate -45.0 -gravity SouthWest caption:"titleInfo" titleInfo.gif
+
+
+
+
+convert -background #dfd -fill #7f7 -font Corbel -pointsize 24 -size 150x -rotate -45.0 -gravity SouthWest -text :"titleInfo" titleInfo.gif
+
+
+convert -size 150x -background #dfd -draw "font Arial  font-size 24 fill #7f7  translate 10,110 rotate -15 text 0,0 ' note '" test.gif
+           
+
+
+Use "draw" setting with text           
+           
+convert -size 150x150 xc:#dfd -draw "font Arial font-size 24 fill #7f7 translate 20,0 gravity southwest rotate -45 text 0,0 'titleInfo'" draw_mvg.gif
+                      
+convert -size 150x150 xc:#dfd -draw "font Arial font-size 24 fill #7f7 translate 20,75 gravity southwest rotate -45 text 0,0 'note'" draw_mvg.gif           

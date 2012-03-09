@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2005, 2007, 2008 University of Alberta Libraries  
+    
+This file is part of MODS Editor.
+
+MODS Editor is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+MODS Editor is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<map:sitemap xmlns:map="http://apache.org/cocoon/sitemap/1.0">
+	<!-- sitemap for MODS editor subproject -->
+	<map:components>
+		<map:generators default="file">
+			<!-- use the new implementation of JX !-->
+			<map:generator name="jx" src="org.apache.cocoon.template.JXTemplateGenerator"/>
+		</map:generators>
+		<map:transformers default="xslt">
+			<map:transformer name="browser-update" src="org.apache.cocoon.ajax.BrowserUpdateTransformer"/>
+<!-- uncomment this transformer if you are going to modify the success pipeline to save the MODS record to a file -->			
+			<map:transformer name="write-source" src="org.apache.cocoon.transformation.SourceWritingTransformer">
+				<map:parameter name="serializer" value="xml"/>
+			</map:transformer>
+			<map:transformer name="tee" src="org.apache.cocoon.transformation.TeeTransformer"/>
+		   <map:transformer name="i18n"
+		      src="org.apache.cocoon.transformation.I18nTransformer">
+		 
+            <catalogues default="messages">
+               <catalogue id="messages" name="messages" location="localize/i18n"/> 
+               
+          
+              <!--
+		         <catalogue id="menu" name="menu" location="{defaults:skin}/translations"/>
+		         -->
+            </catalogues>
+		      <untranslated-text>i18n:untranslated</untranslated-text>
+		      <cache-at-startup>true</cache-at-startup>
+		   </map:transformer>
+		</map:transformers>
+		<map:actions>
+			<map:action name="make-form" src="org.apache.cocoon.forms.acting.MakeFormAction" logger="forms"/>
+			<map:action name="handle-form-submit" src="org.apache.cocoon.forms.acting.HandleFormSubmitAction" logger="forms"/>
+		</map:actions>
+		<map:selectors>
+			<map:selector name="ajax-request" src="org.apache.cocoon.ajax.AjaxRequestSelector"/>
+		</map:selectors>
+		<map:serializers default="html">
+			<map:serializer name="html" src="org.apache.cocoon.serialization.HTMLSerializer" mime-type="text/html; charset=utf-8">
+				<doctype-public>-//W3C//DTD HTML 4.01//EN</doctype-public>
+				<encoding>UTF-8</encoding>
+				<version>4.01</version>
+			</map:serializer>
+			<map:serializer name="xml" src="org.apache.cocoon.serialization.XMLSerializer" mime-type="text/xml">
+				<encoding>UTF-8</encoding>
+				<indent>yes</indent>
+			</map:serializer>
+		</map:serializers>
+	</map:components>
+	<map:views>
+		<map:view name="content" from-label="content">
+			<map:serialize type="xml"/>
+		</map:view>
+		<map:view name="process1" from-label="process1">
+			<map:serialize type="xml"/>
+		</map:view>
+		<map:view name="process2" from-label="process2">
+			<map:serialize type="xml"/>
+		</map:view>
+		<map:view name="process3" from-label="process3">
+			<map:serialize type="xml"/>
+		</map:view>
+		<map:view name="process4" from-label="process4">
+			<map:serialize type="xml"/>
+		</map:view>
+	</map:views>
+	<map:flow language="javascript">
+		<map:script src="flow/mods_binding.js"/>
+	</map:flow>
+	<map:pipelines>
+		<map:component-configurations>
+			<authentication-manager>
+				<handlers>
+					<handler name="modshandler">
+						<redirect-to uri="cocoon:/login"/>
+						<authentication uri="cocoon:raw:/authenticate"/>
+					</handler>
+				</handlers>
+			</authentication-manager>
+			<global-variables>
+				<!-- path to repo directory, where modified records will be saved -->
+			   <!-- Piyapong's workstation -->
+				<!--<repo>/C:/fedora-3.1/tomcat/server/webapps/cwrc/tmp</repo>-->
+			   <!-- Peter's laptop -->
+			   <repo>/Users/peterbinkley/data/modseditor-cwrc/temp</repo>
+			   <!-- newcastle -->
+				<!--<repo>/export/digital/era/webapps/cwrc/tmp</repo>-->
+			   <!-- url of WebDAV interface to which indexing data will be POSTed -->
+				 <webdav>webdav://localhost:8180/fedora</webdav> 
+				<!-- root url of mods editor -->
+				<modseditor>http://localhost:8080/cocoon/modseditor_cwrc</modseditor>
+ 
+				<!-- newcastle version -->
+				<!--<modseditor>http://localhost:8180/cocoon/modseditor_cwrc</modseditor>-->
+			   
+			   
+			   <fedora>newcastle.library.ualberta.ca:8180/fedora</fedora>
+			   <fedoraUser>fedoraAdmin</fedoraUser>
+            <fedoraPassword>xxxxxxxxxxxxxxx</fedoraPassword>
+			   
+			</global-variables>
+		</map:component-configurations>
+		<map:pipeline>
+			<!-- *********************************************************************
+				Continuations
+			************************************************************************* -->
+			<!-- Continue a scenario. The continuation id is passed in the URL -->
+			<map:match pattern="edit/*.continue">
+				<map:call continuation="{1}"/>
+			</map:match>
+			<!-- Continue a scenario. The continuation id is passed as a request parameter -->
+			<map:match pattern="edit/continue">
+				<map:call continuation="{request-param:continuation-id}"/>
+			</map:match>
+			<!-- *********************************************************************
+				Starting Points
+			************************************************************************* -->
+			<map:match pattern="index.html">
+					<map:parameter name="handler" value="modshandler"/>
+					<map:generate src="xml/mods-samples.xml"/>
+					<map:transform src="xsl/mods-samples.xsl"/>
+					<map:serialize type="html"/>
+			</map:match>
+			<map:match pattern="">
+				<map:redirect-to uri="index.html"/>
+			</map:match>
+			<!-- *********************************************************************
+				Working Pipelines
+				************************************************************************* -->
+			 
+         <map:match pattern="fedora-mods/*">
+            <!-- e.g. fedora-mods/orlando:477 -->
+            <map:generate src="http://{global:fedora}/get/{1}/MODS"/>
+            <map:transform src="xsl/strip-namespaces.xsl"/>
+            <map:transform src="xsl/mods-preprocess.xsl"/>
+
+            <map:serialize type="xml"/>
+         </map:match>
+		   
+		   <map:match pattern="fedora-nextPID">
+		      <map:generate type="request"/>
+		      <map:transform src="xsl/fedora-nextPID.xsl">
+		         <map:parameter name="fedora" value="{global:fedora}"/>
+		      </map:transform>
+		      <map:transform type="webdav">
+		         <map:parameter name="username" value="{global:fedoraUser}"/>
+		         <map:parameter name="password" value="{global:fedoraPassword}"/>
+		      </map:transform>
+		      
+		      <map:serialize type="xml"/>
+		   </map:match>
+		   
+
+		   <map:match pattern="edit/cwrc-new-*.html">
+		      <!-- e.g. edit/cwrc-new-Book.html -->
+		      <map:parameter name="handler" value="modshandler"/>
+		      <!-- TODO: determine localizer in flowscript based on genre in MODS -->
+            <map:call function="handleForm">
+               <map:parameter name="function" value="form2xml"/>
+               <map:parameter name="form-definition" value="cocoon:/forms/mods_model.xml?localizer={1}"/>
+               <map:parameter name="documentURI" value="cocoon:/mods-data/mods/{1}.xml"/>
+               <map:parameter name="bindingURI" value="cocoon:/forms/mods_bind.xml?localizer={1}"/>
+               <map:parameter name="displayURI" value="mods-display-pipeline?localizer={1}"/>
+               <map:parameter name="successURI" value="mods-success-pipeline?localizer={1}"/>
+               <map:parameter name="uuid" value="new"/>
+
+               <map:parameter name="tag" value="{request-param:tag}"/>
+               <map:parameter name="username" value="{request-param:username}"/>
+               <map:parameter name="fsk" value="{request-param:__fsk}"/>
+            </map:call>
+		   </map:match>
+		   
+		   <map:match pattern="edit/cwrc-*.html">
+		      <map:parameter name="handler" value="modshandler"/>
+		      <!-- TODO: determine localizer in flowscript based on genre in MODS -->
+            <map:call function="handleForm">
+               <map:parameter name="function" value="form2xml"/>
+               <map:parameter name="form-definition" value="cocoon:/forms/mods_model.xml?localizer={request-param:localizer}"/>
+               <map:parameter name="documentURI" value="cocoon:/fedora-mods/{1}"/>
+               <map:parameter name="bindingURI" value="cocoon:/forms/mods_bind.xml?localizer={request-param:localizer}"/>
+               <map:parameter name="displayURI" value="mods-display-pipeline?localizer={request-param:localizer}"/>
+               <map:parameter name="successURI" value="mods-success-pipeline?localizer={request-param:localizer}"/>
+               <map:parameter name="uuid" value="{1}"/>
+
+               <map:parameter name="tag" value="{request-param:tag}"/>
+               <map:parameter name="username" value="{request-param:username}"/>
+               <map:parameter name="fsk" value="{request-param:__fsk}"/>
+            </map:call>
+		   </map:match>
+		   
+		   
+		   
+		   <map:match pattern="edit/uuid*.html">
+				<map:parameter name="handler" value="modshandler"/>
+				<!-- TODO: determine localizer in flowscript based on genre in MODS -->
+				<map:call function="handleForm">
+					<map:parameter name="function" value="form2xml"/>
+					<map:parameter name="form-definition"
+						value="cocoon:/forms/mods_model.xml?localizer={1}"/>
+					<map:parameter name="documentURI"
+						value="cocoon:/mods-data/http://newcastle.library.ualberta.ca:8180/fedora/get/uuid{1}/MODS"/>
+					<map:parameter name="bindingURI"
+						value="cocoon:/forms/mods_bind.xml?localizer={1}"/>
+					<map:parameter name="displayURI" value="mods-display-pipeline?localizer={1}"/>
+					<map:parameter name="successURI" value="mods-success-pipeline?localizer={1}"/>
+					<map:parameter name="tag" value="{request-param:tag}"/>
+					<map:parameter name="username" value="{request-param:username}"/>
+					<map:parameter name="fsk" value="{request-param:__fsk}"/>
+				</map:call>
+			</map:match>
+			<map:match pattern="edit/orlando*.html">
+				<map:parameter name="handler" value="modshandler"/>
+				<!-- TODO: determine localizer in flowscript based on genre in MODS -->
+            <map:call function="handleForm">
+               <map:parameter name="function" value="form2xml"/>
+               <map:parameter name="uuid" value="orlando:{1}"/>
+               <map:parameter name="form-definition" value="cocoon:/forms/mods_model.xml?localizer={request-param:localizer}"/>
+               <!-- temporary change to use local copy of Orlando mods records -->
+               <!--<map:parameter name="documentURI"
+						value="cocoon:/mods-data/http://newcastle.library.ualberta.ca:8180/fedora/get/orlando{1}/MODS"/>-->
+<!--               <map:parameter name="documentURI" value="cocoon:/mods-data/mods/cwrc/mods/{1}.xml"/> -->
+               <map:parameter name="documentURI" value="cocoon:/fedora-mods/orlando:{1}"/>
+               <map:parameter name="bindingURI" value="cocoon:/forms/mods_bind.xml?localizer={request-param:localizer}"/>
+               <map:parameter name="displayURI" value="mods-display-pipeline?localizer={request-param:localizer}"/>
+               <map:parameter name="successURI" value="mods-success-pipeline?localizer={request-param:localizer}"/>
+               <map:parameter name="tag" value="{request-param:tag}"/>
+               <map:parameter name="username" value="{request-param:username}"/>
+               <map:parameter name="fsk" value="{request-param:__fsk}"/>
+            </map:call>
+			</map:match>
+			
+			
+         <map:match pattern="edit/*.html">
+            <!-- e.g. edit/book.html?tag=1234 -->
+            <!--<map:act type="auth-protect">-->
+            <map:parameter name="handler" value="modshandler"/>
+            <map:select type="resource-exists">
+               <map:when test="{global:repo}/{request-param:tag}.xml">
+                  <!-- if file exists in temp directory, use it -->
+                  <!-- TODO: determine localizer in flowscript based on genre in MODS -->
+                  <map:call function="handleForm">
+                     <map:parameter name="function" value="form2xml"/>
+                     <map:parameter name="form-definition" value="cocoon:/forms/mods_model.xml?localizer={1}"/>
+                     <map:parameter name="documentURI" value="cocoon:/mods-data/{global:repo}/{request-param:tag}.xml"/>
+                     <map:parameter name="bindingURI" value="cocoon:/forms/mods_bind.xml?localizer={1}"/>
+                     <map:parameter name="displayURI" value="mods-display-pipeline?localizer={1}"/>
+                     <map:parameter name="successURI" value="mods-success-pipeline?localizer={1}"/>
+                     <map:parameter name="tag" value="{request-param:tag}"/>
+                     <map:parameter name="username" value="{request-param:username}"/>
+                     <map:parameter name="fsk" value="{request-param:__fsk}"/>
+                  </map:call>
+               </map:when>
+               <map:otherwise>
+                  <!-- otherwise use template file from mods directory e.g. mods/book.xml -->
+                  <map:call function="handleForm">
+                     <map:parameter name="function" value="form2xml"/>
+                     <map:parameter name="form-definition" value="cocoon:/forms/mods_model.xml?localizer={1}"/>
+                     <map:parameter name="documentURI" value="cocoon:/mods-data/mods/{1}.xml"/>
+                     <map:parameter name="bindingURI" value="cocoon:/forms/mods_bind.xml?localizer={1}"/>
+                     <map:parameter name="displayURI" value="mods-display-pipeline?localizer={1}"/>
+                     <map:parameter name="successURI" value="mods-success-pipeline?localizer={1}"/>
+                     <map:parameter name="tag" value="{request-param:tag}"/>
+                     <map:parameter name="username" value="{request-param:username}"/>
+                     <map:parameter name="fsk" value="{request-param:__fsk}"/>
+                  </map:call>
+               </map:otherwise>
+            </map:select>
+            <!--</map:act>
+				<map:redirect-to uri="../../login"/> -->
+         </map:match>
+	
+			<map:match pattern="edit/uuid*.html">
+				<map:parameter name="handler" value="modshandler"/>
+				<!-- TODO: determine localizer in flowscript based on genre in MODS -->
+				<map:call function="handleForm">
+					<map:parameter name="function" value="form2xml"/>
+					<map:parameter name="form-definition"
+						value="cocoon:/forms/mods_model.xml?localizer={1}"/>
+					<map:parameter name="uuid" value="uuid{1}"/>
+					<map:parameter name="documentURI"
+						value="http://newcastle.library.ualberta.ca:8180/fedora/get/uuid{1}/MODS"/>
+					<map:parameter name="bindingURI"
+						value="cocoon:/forms/mods_bind.xml?localizer={1}"/>
+					<map:parameter name="displayURI" value="mods-display-pipeline?localizer={1}"/>
+					<map:parameter name="successURI" value="mods-success-pipeline?localizer={1}"/>
+					<map:parameter name="tag" value="{request-param:tag}"/>
+					<map:parameter name="username" value="{request-param:username}"/>
+					<map:parameter name="fsk" value="{request-param:__fsk}"/>
+				</map:call>
+			</map:match>
+			
+			<map:match pattern="edit/login">
+				<map:redirect-to uri="../login?resource={request-param:resource}"/>
+			</map:match>
+			<map:match pattern="view/*.xml">
+				<map:generate src="mods/{1}.xml"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="documentation/**.html">
+				<map:read src="documentation/{1}.html" mime-type="text/html"/>
+			</map:match>
+			<map:match pattern="documentation/**.css">
+				<map:read src="documentation/{1}.css" mime-type="text/css"/>
+			</map:match>
+			<map:match pattern="documentation/**.pdf">
+				<map:read src="documentation/{1}.pdf" mime-type="application/pdf"/>
+			</map:match>
+			<map:match pattern="dist/*.zip">
+				<map:read src="dist/{1}.zip" mime-type="application/zip"/>
+			</map:match>
+			<map:match pattern="dist/*.gz">
+				<map:read src="dist/{1}.gz" mime-type="application/x-gzip"/>
+			</map:match>
+		</map:pipeline>
+		<!-- *********************************************************************
+				Internal Pipelines
+			************************************************************************* -->
+		<map:pipeline> <!-- internal-only="true"-->
+			<!-- Show a form, using the forms transformer -->
+			<map:match pattern="mods-display-pipeline">
+				<map:generate type="jx" src="cocoon:/forms/mods_template.jx" label="content"/>
+			   
+				<map:transform type="browser-update"/>
+				<!--<map:transform src="cocoon:/forms/mods_styling.xsl">-->
+				   <map:transform src="{global:modseditor}/forms/mods_styling.xsl">
+				      <map:parameter name="resources-uri" value="{baselink:SitemapBaseLink}resources"/>
+				</map:transform>
+				<!-- normalizing whitespace in the html output reduces the download size by about 25% -->
+				<map:transform src="xsl/normalize-space.xsl"/>
+				<map:transform type="session"/>
+			   <map:transform type="i18n"/>
+			   <map:select type="ajax-request">
+					<map:when test="true">
+						<map:serialize type="xml"/>
+					</map:when>
+					<map:otherwise>
+						<map:serialize type="html"/>
+					</map:otherwise>
+				</map:select>
+			   <map:serialize/>
+			</map:match>
+
+			<map:match pattern="mods-data/**">
+				<!-- if you are using the repo global variable and you want to draw your MODS records
+					from the same location, change the @src to "${global:repo}/{1}". -->
+<!--				<map:generate src="{1}" label="content"/>-->
+				<map:generate src="{1}" label="content"/>
+				<map:transform src="xsl/strip-namespaces.xsl"/>
+				<map:transform src="xsl/mods-preprocess.xsl"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="solrtest/**">
+				<map:generate src="{1}" label="content"/>
+				<map:transform src="xsl/mods2solr.xsl"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="mods-success-pipeline">
+				<map:generate type="jx" src="cocoon:/forms/mods_success.jx" label="step1"/>
+				<!--note: we strip namespaces and then add them again in order to have a single namespace 
+				declaration at the top of the mods record, instead of multiple declarations in various mods elements -->
+				
+				<map:transform src="xsl/mods-postprocess.xsl"/>
+				<map:transform src="xsl/add-namespaces.xsl"/> 
+				<map:transform src="xsl/add-mods-namespace.xsl">
+				<!-- uncomment this parameter to prevent the "xsi:schemaLocation" attribute from being added to the output record,
+							 if you don't want the MODS record to be validated -->
+<!--					<map:parameter name="addSchema" value="false"/> -->
+				</map:transform>
+
+<!-- save MODS record to the file system -->				
+	<!--		
+				<map:transform src="xsl/source-writer.xsl">
+					<map:parameter name="repo" value="{global:repo}"/>
+					<map:parameter name="documentURI" value="{flow-attribute:documentURI}"/>
+				</map:transform>
+				<map:transform type="write-source"/>
+-->
+<!-- POST file to a WebDAV or other HTTP-enabled service -->
+
+            <map:transform src="xsl/store-fedora.xsl">
+               <map:parameter name="uuid" value="{flow-attribute:uuid}"/>
+               <map:parameter name="repo" value="{global:repo}"/>
+               <map:parameter name="fedora" value="{global:fedora}"/>
+               <map:parameter name="documentURI" value="{flow-attribute:documentURI}"/>
+            </map:transform>
+
+            <map:transform type="webdav">
+               <map:parameter name="username" value="{global:fedoraUser}"/>
+               <map:parameter name="password" value="{global:fedoraPassword}"/>
+            </map:transform>
+<map:serialize type="xml"/>
+<!--
+
+				<map:transform src="xsl/saveResult.xsl">
+					<map:parameter name="documentURI" value="{flow-attribute:documentURI}"/>
+					<map:parameter name="fsk" value="{flow-attribute:fsk}"/>
+				</map:transform>
+				<map:serialize type="html"/>-->
+
+				<map:transform src="xsl/removeWrapper.xsl"/>
+				<map:serialize type="xml"/>
+			</map:match>
+         <map:match pattern="forms/*">
+            <map:generate src="forms/{1}" label="content"/>
+            <map:select type="resource-exists">
+               <map:when test="localize/{request-param:localizer}.xml">
+                  <map:transform src="cocoon:/localize/{request-param:localizer}.xsl" label="process1"/>
+               </map:when>
+               <map:otherwise/>
+            </map:select>
+            <map:serialize type="xml"/>
+         </map:match>
+			<map:match pattern="localize/*.xml">
+				<map:generate src="localize/{1}.xml"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="localize/*.xsl">
+				<map:generate src="localize/{1}.xml"/>
+				<map:transform src="xsl/localize.xsl"/>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+		<!-- *********************************************************************
+				Resources
+			************************************************************************* -->
+		<map:pipeline>
+			<map:match pattern="**/resources/*/**">
+				<map:select type="resource-exists">
+					<map:when test="resources/{2}/{3}">
+						<map:read src="resources/{2}/{3}"/>
+					</map:when>
+					<map:otherwise>
+						<map:read src="resource://org/apache/cocoon/{2}/resources/{3}"/>
+					</map:otherwise>
+				</map:select>
+			</map:match>
+			<map:match pattern="**/*.css">
+				<map:read mime-type="text/css" src="css/{1}.css"/>
+			</map:match>
+			<map:match pattern="*.css">
+				<map:read mime-type="text/css" src="css/{1}.css"/>
+			</map:match>
+			<map:match pattern="**/*.gif">
+				<map:read mime-type="image/gif" src="images/{2}.gif"/>
+			</map:match>
+		</map:pipeline>
+		<!-- *********************************************************************
+				Authentication Pipelines
+			************************************************************************* -->
+		<map:pipeline>
+			<map:match pattern="login">
+				<!-- if we are already logged in, redirect to the protected document -->
+				<map:act type="auth-loggedIn">
+					<map:parameter name="handler" value="modshandler"/>
+					<map:redirect-to uri="{request-param:resource}"/>
+				</map:act>
+				<map:generate src="xml/login.xml"/>
+				<map:transform src="xsl/login.xsl">
+					<map:parameter name="resource" value="{request-param:resource}"/>
+				</map:transform>
+				<map:serialize type="html"/>
+			</map:match>
+			<map:match pattern="do-login">
+				<!-- try to login -->
+				<map:act type="auth-loggedIn">
+					<map:parameter name="handler" value="modshandler"/>
+					<map:redirect-to uri="{request-param:resource}"/>					
+				</map:act>
+				<map:act type="auth-login">
+					<map:parameter name="handler" value="modshandler"/>
+					<map:parameter name="parameter_ID" value="{request-param:username}"/>
+					<map:redirect-to uri="{request-param:resource}"/>					
+				</map:act>
+				<!--         something was wrong, try it again -->
+				<map:redirect-to uri="login"/>
+			</map:match>
+			<map:match pattern="do-logout">
+				<map:act type="auth-protect">
+					<map:parameter name="handler" value="modshandler"/>
+					<map:act type="auth-logout"/>
+				</map:act>
+				<map:redirect-to uri="index.html"/>
+			</map:match>
+		</map:pipeline>
+		<map:pipeline internal-only="true">
+			<map:match pattern="authenticate">
+				<map:generate src="users/users.xml"/>
+				<map:transform src="xsl/authenticate.xsl">
+					<map:parameter name="use-request-parameters" value="true"/>
+				</map:transform>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+	</map:pipelines>
+</map:sitemap>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<mods xmlns="http://www.loc.gov/mods/v3" version="3.4">
+    <titleInfo/>
+    <name/>
+    <typeOfResource>text</typeOfResource>
+    <genre authority="marcgt">thesis</genre>
+    <originInfo/>
+    <language>
+        <languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+    </language>
+    <physicalDescription/>
+    <abstract/>
+    <subject/>
+    <recordInfo/>
+</mods>

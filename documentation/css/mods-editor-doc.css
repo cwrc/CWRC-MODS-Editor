@@ -1,0 +1,61 @@
+/*
+Copyright 2005, 2007, 2008 University of Alberta Libraries  
+    
+This file is part of MODS Editor.
+
+MODS Editor is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+MODS Editor is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
+*/
+li {list-style-type: none;}
+li.class {
+  border: 1px solid black;
+  margin-top: 20px;
+  padding: 10px;
+}
+span.class {
+  text-transform: capitalize;
+  font-size: 150%;
+  font-weight: bold;
+}
+.label {
+  font-style: italic;
+}
+.doc {
+  background: #ddd;
+  padding: 3px;
+}
+.doc p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.selection-list-item {
+  font-weight: bold;
+}
+.id {
+  font-family: sans-serif;
+  font-size: 110%;
+}
+span.struct, span.field, span.repeater, span.union, span.submit, span.output {
+  border: 2px solid #f66;
+  padding: 0 2px 0 2px;
+}
+li.field {
+  margin-left: 1em;
+  text-indent: -1em;
+}
+li.repeater, li.struct {
+  border: 1px solid black;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-top: 2px;
+}

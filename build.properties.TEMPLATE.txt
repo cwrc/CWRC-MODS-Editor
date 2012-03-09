@@ -1,0 +1,1 @@
+dbf.basedir=C:/local/resources/DocBook-Framework-1.0

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE localize SYSTEM "localize.dtd">
+<localize xmlns:fb="http://apache.org/cocoon/forms/1.0#binding"
+    xmlns:fd="http://apache.org/cocoon/forms/1.0#definition"
+    xmlns:ft="http://apache.org/cocoon/forms/1.0#template"
+    xmlns:fi="http://apache.org/cocoon/forms/1.0#instance"
+    xmlns:jx="http://apache.org/cocoon/templates/jx/1.0" xmlns:y="proto-xsl"
+   id="Book">
+   &selgenre;
+   &selrelatedItemType;
+   &selfrequency;
+   <validation>
+      
+      <field class="single-titleInfo" id="title">
+         <fd:length min="1">
+            <fd:failmessage>Must provide a title.</fd:failmessage>
+         </fd:length>
+         
+         <fd:javascript>
+            var success=true;
+
+            // wrap the value in a wrapper element so it can be parsed as an xml document
+            var value = java.lang.String("&lt;wrapper&gt;" + widget.value + "&lt;/wrapper&gt;");
+            
+            //cocoon.log.error("dapisam parsing " + value);
+                        
+            // prepare parser
+            var dBF = new javax.xml.parsers.DocumentBuilderFactory.newInstance();
+            var builder = dBF.newDocumentBuilder();
+
+            // try parsing; if succeeds, return true; if fails, return validation error
+            try {
+               var doc = builder.parse(new org.xml.sax.InputSource(new java.io.StringReader(value)));
+            }
+            catch(err) {
+               var error = new Packages.org.apache.cocoon.forms.validation.ValidationError(
+                  "xml parsing error: " + err.message, true
+               );
+               widget.setValidationError(error);
+               return false;
+            }
+            
+            return true;
+         </fd:javascript>
+      </field>
+      
+<!--      <field class="titleInfo" id="titleInfo">
+         <fd:length min="1">
+            <fd:failmessage>Must provide a title.</fd:failmessage>
+         </fd:length>
+      </field> -->
+   </validation>
+   <suppress>
+      <instance class="genre">common-language-elements</instance>
+      <field class="language">languages_languageterms_type</field>
+      <field class="language">languages_languageterms_authority</field>
+      <repeater class="recordInfo">recordCreationDates</repeater>
+      <repeater class="recordInfo">recordChangeDates</repeater>
+      <repeater class="recordInfo">recordIdentifiers</repeater>
+      <!--
+      <field class="recordInfo">lastModified</field>
+      <field class="recordInfo">lastModifiedBy</field>
+      -->
+   </suppress>
+   <!-- note: userclasses can be a space-delimited list of class names -->
+   <selectionlist class="genre">
+      <field id="authority">
+         <item value="marcgt">marcgt</item>
+      </field>
+      
+   </selectionlist>
+   
+</localize>

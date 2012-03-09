@@ -1,0 +1,2117 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+	Copyright 2005, 2007, 2008 University of Alberta Libraries  
+	
+	This file is part of MODS Editor.
+	
+	MODS Editor is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	MODS Editor is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<fd:form xmlns:fd="http://apache.org/cocoon/forms/1.0#definition" xmlns:i18n="http://apache.org/cocoon/i18n/2.1"
+   xmlns:doc="http://peel.library.ualberta.ca/modseditor/doc/1.0">
+   <fd:widgets>
+      <fd:class id="common-subject-date-elements-class">
+         <doc:doc>
+            <p>This class is used for all dates in originInfo.</p>
+         </doc:doc>
+         <fd:widgets>
+            <fd:field id="value">
+               <fd:label>
+                  <i18n:text key="common-subject-date-elements-class/value"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="encoding">
+               <fd:label>
+                  <i18n:text key="common-subject-date-elements-class/encoding"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+               <fd:selection-list>
+                  <fd:item value="">
+                     <fd:label>
+                        <i18n:text key="common-subject-date-elements-class/encoding/"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="w3cdtf">
+                     <fd:label>
+                        <i18n:text key="common-subject-date-elements-class/encoding/w3cdtf"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="iso8601">
+                     <fd:label>
+                        <i18n:text key="common-subject-date-elements-class/encoding/iso8601"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="marc">
+                     <fd:label>
+                        <i18n:text key="common-subject-date-elements-class/encoding/marc"/>
+                     </fd:label>
+                  </fd:item>
+               </fd:selection-list>
+            </fd:field>
+            <fd:field id="point">
+               <fd:label>
+                  <i18n:text key="common-subject-date-elements-class/point"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+               <fd:selection-list>
+                  <fd:item value="">
+                     <fd:label>
+                        <i18n:text key="common-subject-date-elements-class/point/"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="start">
+                     <fd:label>
+                        <i18n:text key="common-subject-date-elements-class/point/start"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="end">
+                     <fd:label>
+                        <i18n:text key="common-subject-date-elements-class/point/end"/>
+                     </fd:label>
+                  </fd:item>
+               </fd:selection-list>
+            </fd:field>
+            <fd:field id="keydate">
+               <fd:label>
+                  <i18n:text key="common-subject-date-elements-class/keydate"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+               <fd:selection-list>
+                  <fd:item value="">
+                     <fd:label>
+                        <i18n:text key="common-subject-date-elements-class/keydate/"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="yes">
+                     <fd:label>
+                        <i18n:text key="common-subject-date-elements-class/keydate/yes"/>
+                     </fd:label>
+                  </fd:item>
+               </fd:selection-list>
+            </fd:field>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="common-date-elements-class">
+         <!-- used for all dates in originInfo -->
+         <fd:widgets>
+            <fd:field id="qualifier">
+               <fd:label>
+                  <i18n:text key="common-date-elements-class/qualifier"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+               <fd:selection-list>
+                  <fd:item value="">
+                     <fd:label>
+                        <i18n:text key="common-date-elements-class/qualifier/"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="approximate">
+                     <fd:label>
+                        <i18n:text key="common-date-elements-class/qualifier/approximate"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="inferred">
+                     <fd:label>
+                        <i18n:text key="common-date-elements-class/qualifier/inferred"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="questionable">
+                     <fd:label>
+                        <i18n:text key="common-date-elements-class/qualifier/questionable"/>
+                     </fd:label>
+                  </fd:item>
+               </fd:selection-list>
+            </fd:field>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="common-language-elements-class">
+         <fd:widgets>
+            <fd:field id="lang">
+               <fd:label>
+                  <i18n:text key="common-language-elements-class/lang"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="xml-lang">
+               <fd:label>
+                  <i18n:text key="common-language-elements-class/xml-lang"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="script">
+               <fd:label>
+                  <i18n:text key="common-language-elements-class/script"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="transliteration">
+               <fd:label>
+                  <i18n:text key="common-language-elements-class/transliteration"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="common-linking-elements-class">
+         <fd:widgets>
+            <fd:field id="modsID">
+               <fd:label>
+                  <i18n:text key="common-linking-elements-class/modsID"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="xlink">
+               <fd:label>
+                  <i18n:text key="common-linking-elements-class/xlink"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="common-controls-class">
+         <fd:widgets>
+            <fd:row-action id="insertWidget" action-command="add-after" class="submit">
+               <fd:label>
+                  <i18n:text key="common-controls-class/insertWidget"/>
+               </fd:label>
+            </fd:row-action>
+            <fd:row-action id="deleteWidget" action-command="delete" class="submit">
+               <!-- use en-dash to make it clearer -->
+               <fd:label>
+                  <i18n:text key="common-controls-class/deleteWidget"/>
+               </fd:label>
+            </fd:row-action>
+            <fd:row-action id="moveUp" action-command="move-up" class="submit">
+               <fd:label>
+                  <i18n:text key="common-controls-class/moveUp"/>
+               </fd:label>
+            </fd:row-action>
+            <fd:row-action id="moveDown" action-command="move-down" class="submit">
+               <fd:label>
+                  <i18n:text key="common-controls-class/moveDown"/>
+               </fd:label>
+            </fd:row-action>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="common-textfield-class">
+         <fd:widgets>
+            <fd:field id="value">
+               <fd:label>
+                  <i18n:text key="common-textfield-class/value"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="type">
+               <fd:label>
+                  <i18n:text key="common-textfield-class/type"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="xlink">
+               <fd:label>
+                  <i18n:text key="common-textfield-class/xlink"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="displaylabel">
+               <fd:label>
+                  <i18n:text key="common-textfield-class/displaylabel"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="subject-widgets-class">
+         <fd:widgets>
+            <fd:repeater id="subject-widgets" initial-size="1" orderable="true">
+               <fd:label>
+                  <i18n:text key="subject-widgets-class/subject-widgets"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:new id="subject-widget-row-class"/>
+               </fd:widgets>
+            </fd:repeater>
+            <fd:repeater-action id="add-to-subject-widgets" action-command="add-row" repeater="subject-widgets">
+               <fd:label>
+                  <i18n:text key="subject-widgets-class/add-to-subject-widgets"/>
+               </fd:label>
+            </fd:repeater-action>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="subject-widget-row-class">
+         <fd:widgets>
+            <fd:field id="type">
+               <fd:label>
+                  <i18n:text key="subject-widget-row-class/type"/>
+               </fd:label>
+               <!--					<fd:initial-value>mods_topic</fd:initial-value>-->
+               <fd:datatype base="string"/>
+               <fd:selection-list>
+                  <fd:item value="">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/type/"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="mods_topic">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/type/mods_topic"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="mods_geographic">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/type/mods_geographic"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="mods_temporal">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/type/mods_temporal"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="mods_titleInfo">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/type/mods_titleInfo"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="mods_name">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/type/mods_name"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="mods_hierarchicalGeographic">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/type/mods_hierarchicalGeographic"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="mods_cartographics">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/type/mods_cartographics"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="mods_geographicCode">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/type/mods_geographicCode"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="mods_occupation">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/type/mods_occupation"/>
+                     </fd:label>
+                  </fd:item>
+               </fd:selection-list>
+            </fd:field>
+            <fd:union id="union" default="" case="type">
+               <fd:datatype base="string"/>
+               <fd:label>
+                  <i18n:text key="subject-widget-row-class/union"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:group id="mods_topic">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/union/mods_topic"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:field id="value">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_topic/value"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:group>
+                  <fd:group id="mods_geographic">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/union/mods_geographic"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:field id="value">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_geographic/value"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:group>
+                  <fd:group id="mods_temporal">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/union/mods_temporal"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:new id="common-subject-date-elements-class"/>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:group>
+                  <fd:group id="mods_titleInfo">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/union/mods_titleInfo"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:new id="single-titleInfo-class"/>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:group>
+                  <fd:group id="mods_name">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/union/mods_name"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:new id="single-name-class"/>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:group>
+                  <fd:group id="mods_hierarchicalGeographic">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/union/mods_hierarchicalGeographic"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:field id="continent">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_hierarchicalGeographic/continent"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="country">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_hierarchicalGeographic/country"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="province">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_hierarchicalGeographic/province"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="region">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_hierarchicalGeographic/region"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="state">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_hierarchicalGeographic/state"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="territory">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_hierarchicalGeographic/territory"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="county">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_hierarchicalGeographic/county"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="city">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_hierarchicalGeographic/city"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="island">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_hierarchicalGeographic/island"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="area">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_hierarchicalGeographic/area"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:group>
+                  <fd:group id="mods_cartographics">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/union/mods_cartographics"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:field id="coordinates">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_cartographics/coordinates"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="scale">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_cartographics/scale"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="projection">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_cartographics/projection"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:group>
+                  <fd:group id="mods_geographicCode">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/union/mods_geographicCode"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:field id="value">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_geographicCode/value"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="authority">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_geographicCode/authority"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                           <fd:selection-list>
+                              <fd:item value="">
+                                 <fd:label>
+                                    <i18n:text key="subject-widget-row-class/union/mods_geographicCode/authority/"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="marcgac">
+                                 <fd:label>
+                                    <i18n:text key="subject-widget-row-class/union/mods_geographicCode/authority/marcgac"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="marccountry">
+                                 <fd:label>
+                                    <i18n:text key="subject-widget-row-class/union/mods_geographicCode/authority/marccountry"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="iso3166">
+                                 <fd:label>
+                                    <i18n:text key="subject-widget-row-class/union/mods_geographicCode/authority/iso3166"/>
+                                 </fd:label>
+                              </fd:item>
+                           </fd:selection-list>
+                        </fd:field>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:group>
+                  <fd:group id="mods_occupation">
+                     <fd:label>
+                        <i18n:text key="subject-widget-row-class/union/mods_occupation"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:field id="value">
+                           <fd:label>
+                              <i18n:text key="subject-widget-row-class/union/mods_occupation/value"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:group>
+               </fd:widgets>
+            </fd:union>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="single-titleInfo-class">
+         <fd:widgets>
+            <fd:field id="nonsort" whitespace="trim-start">
+               <fd:label>
+                  <i18n:text key="single-titleInfo-class/nonsort"/>
+               </fd:label>
+               <fd:help>Use "+" to represent a space (otherwise final spaces will be trimmed)</fd:help>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="title">
+               <fd:label>
+                  <i18n:text key="single-titleInfo-class/title"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="subtitle">
+               <fd:label>
+                  <i18n:text key="single-titleInfo-class/subtitle"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="partnumber">
+               <fd:label>
+                  <i18n:text key="single-titleInfo-class/partnumber"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="partname">
+               <fd:label>
+                  <i18n:text key="single-titleInfo-class/partname"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="type">
+               <fd:label>
+                  <i18n:text key="single-titleInfo-class/type"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+               <fd:selection-list>
+                  <fd:item value="">
+                     <fd:label>
+                        <i18n:text key="single-titleInfo-class/type/"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="abbreviated">
+                     <fd:label>
+                        <i18n:text key="single-titleInfo-class/type/abbreviated"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="translated">
+                     <fd:label>
+                        <i18n:text key="single-titleInfo-class/type/translated"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="alternative">
+                     <fd:label>
+                        <i18n:text key="single-titleInfo-class/type/alternative"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="uniform">
+                     <fd:label>
+                        <i18n:text key="single-titleInfo-class/type/uniform"/>
+                     </fd:label>
+                  </fd:item>
+               </fd:selection-list>
+            </fd:field>
+            <fd:new id="common-language-elements-class"/>
+            <fd:new id="common-linking-elements-class"/>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="titleInfo-class">
+         <fd:widgets>
+            <fd:repeater id="titleInfos" orderable="true">
+               <fd:label>
+                  <i18n:text key="titleInfo-class/titleInfos"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:new id="single-titleInfo-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="single-name-class">
+         <fd:widgets>
+            <fd:field id="type">
+               <fd:label>
+                  <i18n:text key="single-name-class/type"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+               <fd:selection-list>
+                  <fd:item value="personal">
+                     <fd:label>
+                        <i18n:text key="single-name-class/type/personal"/>
+                     </fd:label>
+                  </fd:item>
+                  <fd:item value="corporate">
+                     <fd:label>
+                        <i18n:text key="single-name-class/type/corporate"/>
+                     </fd:label>
+                  </fd:item>
+               </fd:selection-list>
+            </fd:field>
+            <fd:repeater id="nameparts" orderable="true">
+               <fd:label>
+                  <i18n:text key="single-name-class/nameparts"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:field id="type">
+                     <fd:label>
+                        <i18n:text key="single-name-class/nameparts/type"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                     <fd:selection-list>
+                        <fd:item value="">
+                           <fd:label>
+                              <i18n:text key="single-name-class/nameparts/type/"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="date">
+                           <fd:label>
+                              <i18n:text key="single-name-class/nameparts/type/date"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="family">
+                           <fd:label>
+                              <i18n:text key="single-name-class/nameparts/type/family"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="given">
+                           <fd:label>
+                              <i18n:text key="single-name-class/nameparts/type/given"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="termsOfAddress">
+                           <fd:label>
+                              <i18n:text key="single-name-class/nameparts/type/termsOfAddress"/>
+                           </fd:label>
+                        </fd:item>
+                     </fd:selection-list>
+                  </fd:field>
+                  <fd:field id="value">
+                     <fd:label>
+                        <i18n:text key="single-name-class/nameparts/value"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+            <fd:repeater-action id="add-to-nameParts" action-command="add-row" repeater="nameparts">
+               <fd:label>
+                  <i18n:text key="single-name-class/add-to-nameParts"/>
+               </fd:label>
+            </fd:repeater-action>
+            <fd:field id="displayForm">
+               <fd:label>
+                  <i18n:text key="single-name-class/displayForm"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:new id="role-class"/>
+            <fd:repeater-action id="add-to-roles" action-command="add-row" repeater="roles">
+               <fd:label>
+                  <i18n:text key="single-name-class/add-to-roles"/>
+               </fd:label>
+            </fd:repeater-action>
+
+            <fd:field id="description">
+               <fd:label>
+                  <i18n:text key="single-name-class/description"/>
+               </fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:new id="common-language-elements-class"/>
+            <fd:new id="common-linking-elements-class"/>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="name-class">
+         <fd:widgets>
+            <fd:repeater id="names" orderable="true">
+               <fd:label>
+                  <i18n:text key="name-class/names"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:new id="single-name-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="role-class">
+         <fd:widgets>
+            <fd:repeater id="roles" orderable="true">
+               <fd:label>
+                  <i18n:text key="role-class/roles"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:repeater id="roleterms" orderable="true">
+                     <fd:label>
+                        <i18n:text key="role-class/roles/roleterms"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:field id="roleterms_role">
+                           <fd:label>
+                              <i18n:text key="role-class/roles/roleterms/roleterms_role"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="roleterms_type">
+                           <fd:label>
+                              <i18n:text key="role-class/roles/roleterms/roleterms_type"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                           <fd:selection-list>
+                              <fd:item value="">
+                                 <fd:label>
+                                    <i18n:text key="role-class/roles/roleterms/roleterms_type/"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="text">
+                                 <fd:label>
+                                    <i18n:text key="role-class/roles/roleterms/roleterms_type/text"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="code">
+                                 <fd:label>
+                                    <i18n:text key="role-class/roles/roleterms/roleterms_type/code"/>
+                                 </fd:label>
+                              </fd:item>
+                           </fd:selection-list>
+                        </fd:field>
+                        <fd:field id="roleterms_authority">
+                           <fd:label>
+                              <i18n:text key="role-class/roles/roleterms/roleterms_authority"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                           <fd:selection-list>
+                              <fd:item value="">
+                                 <fd:label>
+                                    <i18n:text key="role-class/roles/roleterms/roleterms_authority/"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="iso639-2b">
+                                 <fd:label>
+                                    <i18n:text key="role-class/roles/roleterms/roleterms_authority/iso639-2b"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="rfc3066">
+                                 <fd:label>
+                                    <i18n:text key="role-class/roles/roleterms/roleterms_authority/rfc3066"/>
+                                 </fd:label>
+                              </fd:item>
+                           </fd:selection-list>
+                        </fd:field>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-roleTerms" action-command="add-row" repeater="roleterms">
+                     <fd:label>
+                        <i18n:text key="role-class/roles/add-to-roleTerms"/>
+                     </fd:label>
+                  </fd:repeater-action>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="typeOfResource-class">
+         <fd:widgets>
+            <fd:repeater id="typeOfResources" initial-size="0" orderable="true">
+               <fd:label>
+                  <i18n:text key="typeOfResource-class/typeOfResources"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:booleanfield id="collection">
+                     <fd:label>
+                        <i18n:text key="typeOfResource-class/typeOfResources/collection"/>
+                     </fd:label>
+                     <fd:datatype base="boolean"/>
+                  </fd:booleanfield>
+                  <fd:booleanfield id="manuscript">
+                     <fd:label>
+                        <i18n:text key="typeOfResource-class/typeOfResources/manuscript"/>
+                     </fd:label>
+                     <fd:datatype base="boolean"/>
+                  </fd:booleanfield>
+                  <fd:field id="type">
+                     <fd:label>
+                        <i18n:text key="typeOfResource-class/typeOfResources/type"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                     <fd:selection-list>
+                        <fd:item value="text">
+                           <fd:label>
+                              <i18n:text key="typeOfResource-class/typeOfResources/type/text"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="cartographic">
+                           <fd:label>
+                              <i18n:text key="typeOfResource-class/typeOfResources/type/cartographic"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="notated music">
+                           <fd:label>
+                              <i18n:text key="typeOfResource-class/typeOfResources/type/notated music"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="sound recording">
+                           <fd:label>
+                              <i18n:text key="typeOfResource-class/typeOfResources/type/sound recording"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="sound recording-musical">
+                           <fd:label>
+                              <i18n:text key="typeOfResource-class/typeOfResources/type/sound recording-musical"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="sound recording-nonmusical">
+                           <fd:label>
+                              <i18n:text key="typeOfResource-class/typeOfResources/type/sound recording-nonmusical"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="still image">
+                           <fd:label>
+                              <i18n:text key="typeOfResource-class/typeOfResources/type/still image"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="moving image">
+                           <fd:label>
+                              <i18n:text key="typeOfResource-class/typeOfResources/type/moving image"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="three dimensional object">
+                           <fd:label>
+                              <i18n:text key="typeOfResource-class/typeOfResources/type/three dimensional object"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="software, multimedia">
+                           <fd:label>
+                              <i18n:text key="typeOfResource-class/typeOfResources/type/software, multimedia"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="mixed media">
+                           <fd:label>
+                              <i18n:text key="typeOfResource-class/typeOfResources/type/mixed media"/>
+                           </fd:label>
+                        </fd:item>
+                     </fd:selection-list>
+                  </fd:field>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="genre-class">
+         <fd:widgets>
+            <fd:repeater id="genres" orderable="true">
+               <fd:label>
+                  <i18n:text key="genre-class/genres"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:field id="genre">
+                     <fd:label>
+                        <i18n:text key="genre-class/genres/genre"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="authority">
+                     <fd:label>
+                        <i18n:text key="genre-class/genres/authority"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                     <fd:selection-list>
+                        <fd:item value="">
+                           <fd:label>
+                              <i18n:text key="genre-class/genres/authority/"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="rbgenr">
+                           <fd:label>
+                              <i18n:text key="genre-class/genres/authority/rbgenr"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="marcgt">
+                           <fd:label>
+                              <i18n:text key="genre-class/genres/authority/marcgt"/>
+                           </fd:label>
+                        </fd:item>
+                     </fd:selection-list>
+                  </fd:field>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="originInfo-class">
+         <fd:widgets>
+            <fd:repeater id="originInfos" orderable="true">
+               <fd:label>
+                  <i18n:text key="originInfo-class/originInfos"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:repeater id="places" orderable="true">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/places"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:repeater id="placeterms" orderable="true">
+                           <fd:label>
+                              <i18n:text key="originInfo-class/originInfos/places/placeterms"/>
+                           </fd:label>
+                           <fd:widgets>
+                              <fd:field id="places_placeterms_pubplace">
+                                 <fd:label>
+                                    <i18n:text key="originInfo-class/originInfos/places/placeterms/places_placeterms_pubplace"/>
+                                 </fd:label>
+                                 <fd:datatype base="string"/>
+                              </fd:field>
+                              <fd:field id="places_placeterms_type">
+                                 <fd:label>
+                                    <i18n:text key="originInfo-class/originInfos/places/placeterms/places_placeterms_type"/>
+                                 </fd:label>
+                                 <fd:datatype base="string"/>
+                                 <fd:selection-list>
+                                    <fd:item value="">
+                                       <fd:label>
+                                          <i18n:text key="originInfo-class/originInfos/places/placeterms/places_placeterms_type/"/>
+                                       </fd:label>
+                                    </fd:item>
+                                    <fd:item value="text">
+                                       <fd:label>
+                                          <i18n:text key="originInfo-class/originInfos/places/placeterms/places_placeterms_type/text"/>
+                                       </fd:label>
+                                    </fd:item>
+                                    <fd:item value="code">
+                                       <fd:label>
+                                          <i18n:text key="originInfo-class/originInfos/places/placeterms/places_placeterms_type/code"/>
+                                       </fd:label>
+                                    </fd:item>
+                                 </fd:selection-list>
+                              </fd:field>
+                              <fd:field id="places_placeterms_authority">
+                                 <fd:label>
+                                    <i18n:text key="originInfo-class/originInfos/places/placeterms/places_placeterms_authority"/>
+                                 </fd:label>
+                                 <fd:datatype base="string"/>
+                                 <fd:selection-list>
+                                    <fd:item value="">
+                                       <fd:label>
+                                          <i18n:text key="originInfo-class/originInfos/places/placeterms/places_placeterms_authority/"/>
+                                       </fd:label>
+                                    </fd:item>
+                                    <fd:item value="marccountry">
+                                       <fd:label>
+                                          <i18n:text key="originInfo-class/originInfos/places/placeterms/places_placeterms_authority/marccountry"/>
+                                       </fd:label>
+                                    </fd:item>
+                                    <fd:item value="iso3166">
+                                       <fd:label>
+                                          <i18n:text key="originInfo-class/originInfos/places/placeterms/places_placeterms_authority/iso3166"/>
+                                       </fd:label>
+                                    </fd:item>
+                                 </fd:selection-list>
+                              </fd:field>
+                              <fd:new id="common-controls-class"/>
+                           </fd:widgets>
+                        </fd:repeater>
+                        <fd:repeater-action id="places_add-to-placeTerms" action-command="add-row" repeater="placeterms">
+                           <fd:label>
+                              <i18n:text key="originInfo-class/originInfos/places/places_add-to-placeTerms"/>
+                           </fd:label>
+                        </fd:repeater-action>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-places" action-command="add-row" repeater="places">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/add-to-places"/>
+                     </fd:label>
+                  </fd:repeater-action>
+                  <fd:field id="publisher">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/publisher"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:repeater id="dates" orderable="true">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/dates"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:field id="dates_temp_type">
+                           <fd:label>
+                              <i18n:text key="originInfo-class/originInfos/dates/dates_temp_type"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                           <fd:selection-list>
+                              <fd:item value="dateIssued">
+                                 <fd:label>
+                                    <i18n:text key="originInfo-class/originInfos/dates/dates_temp_type/dateIssued"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="dateCreated">
+                                 <fd:label>
+                                    <i18n:text key="originInfo-class/originInfos/dates/dates_temp_type/dateCreated"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="dateCaptured">
+                                 <fd:label>
+                                    <i18n:text key="originInfo-class/originInfos/dates/dates_temp_type/dateCaptured"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="dateValid">
+                                 <fd:label>
+                                    <i18n:text key="originInfo-class/originInfos/dates/dates_temp_type/dateValid"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="dateModified">
+                                 <fd:label>
+                                    <i18n:text key="originInfo-class/originInfos/dates/dates_temp_type/dateModified"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="copyrightDate">
+                                 <fd:label>
+                                    <i18n:text key="originInfo-class/originInfos/dates/dates_temp_type/copyrightDate"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="dateOther">
+                                 <fd:label>
+                                    <i18n:text key="originInfo-class/originInfos/dates/dates_temp_type/dateOther"/>
+                                 </fd:label>
+                              </fd:item>
+                           </fd:selection-list>
+                        </fd:field>
+                        <fd:new id="common-subject-date-elements-class"/>
+                        <fd:new id="common-date-elements-class"/>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-dates" action-command="add-row" repeater="dates">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/add-to-dates"/>
+                     </fd:label>
+                  </fd:repeater-action>
+                  <fd:field id="datecreated">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/datecreated"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="datecaptured">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/datecaptured"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="datevalid">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/datevalid"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="datemodified">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/datemodified"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="copyrightdate">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/copyrightdate"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="dateother">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/dateother"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="edition">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/edition"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="issuance">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/issuance"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                     <fd:selection-list>
+                        <fd:item value="">
+                           <fd:label>
+                              <i18n:text key="originInfo-class/originInfos/issuance/"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="continuing">
+                           <fd:label>
+                              <i18n:text key="originInfo-class/originInfos/issuance/continuing"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="monographic">
+                           <fd:label>
+                              <i18n:text key="originInfo-class/originInfos/issuance/monographic"/>
+                           </fd:label>
+                        </fd:item>
+                     </fd:selection-list>
+                  </fd:field>
+                  <fd:field id="frequency">
+                     <fd:label>
+                        <i18n:text key="originInfo-class/originInfos/frequency"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="language-class">
+         <fd:widgets>
+            <fd:repeater id="languages" orderable="true">
+               <fd:label>
+                  <i18n:text key="language-class/languages"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:repeater id="languages_languageterms" orderable="true">
+                     <fd:label>
+                        <i18n:text key="language-class/languages/languages_languageterms"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:field id="languages_languageterms_language">
+                           <fd:label>
+                              <i18n:text key="language-class/languages/languages_languageterms/languages_languageterms_language"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="languages_languageterms_type">
+                           <fd:label>
+                              <i18n:text key="language-class/languages/languages_languageterms/languages_languageterms_type"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                           <fd:selection-list>
+                              <fd:item value="">
+                                 <fd:label>
+                                    <i18n:text key="language-class/languages/languages_languageterms/languages_languageterms_type/"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="text">
+                                 <fd:label>
+                                    <i18n:text key="language-class/languages/languages_languageterms/languages_languageterms_type/text"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="code">
+                                 <fd:label>
+                                    <i18n:text key="language-class/languages/languages_languageterms/languages_languageterms_type/code"/>
+                                 </fd:label>
+                              </fd:item>
+                           </fd:selection-list>
+                        </fd:field>
+                        <fd:field id="languages_languageterms_authority">
+                           <fd:label>
+                              <i18n:text key="language-class/languages/languages_languageterms/languages_languageterms_authority"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                           <fd:selection-list>
+                              <fd:item value="">
+                                 <fd:label>
+                                    <i18n:text key="language-class/languages/languages_languageterms/languages_languageterms_authority/"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="iso639-2b">
+                                 <fd:label>
+                                    <i18n:text key="language-class/languages/languages_languageterms/languages_languageterms_authority/iso639-2b"/>
+                                 </fd:label>
+                              </fd:item>
+                              <fd:item value="rfc3066">
+                                 <fd:label>
+                                    <i18n:text key="language-class/languages/languages_languageterms/languages_languageterms_authority/rfc3066"/>
+                                 </fd:label>
+                              </fd:item>
+                           </fd:selection-list>
+                        </fd:field>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-languageTerms" action-command="add-row" repeater="languages_languageterms">
+                     <fd:label>
+                        <i18n:text key="language-class/languages/add-to-languageTerms"/>
+                     </fd:label>
+                  </fd:repeater-action>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="physicalDescription-class">
+         <fd:widgets>
+            <fd:repeater id="physicalDescriptions" orderable="true">
+               <fd:label>
+                  <i18n:text key="physicalDescription-class/physicalDescriptions"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:field id="form">
+                     <fd:label>
+                        <i18n:text key="physicalDescription-class/physicalDescriptions/form"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="formauthority">
+                     <fd:label>
+                        <i18n:text key="physicalDescription-class/physicalDescriptions/formauthority"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="reformattingquality">
+                     <fd:label>
+                        <i18n:text key="physicalDescription-class/physicalDescriptions/reformattingquality"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                     <fd:selection-list>
+                        <fd:item value="">
+                           <fd:label>
+                              <i18n:text key="physicalDescription-class/physicalDescriptions/reformattingquality/"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="access">
+                           <fd:label>
+                              <i18n:text key="physicalDescription-class/physicalDescriptions/reformattingquality/access"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="preservation">
+                           <fd:label>
+                              <i18n:text key="physicalDescription-class/physicalDescriptions/reformattingquality/preservation"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="replacement">
+                           <fd:label>
+                              <i18n:text key="physicalDescription-class/physicalDescriptions/reformattingquality/replacement"/>
+                           </fd:label>
+                        </fd:item>
+                     </fd:selection-list>
+                  </fd:field>
+                  <fd:field id="internetmediatype">
+                     <fd:label>
+                        <i18n:text key="physicalDescription-class/physicalDescriptions/internetmediatype"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="extent">
+                     <fd:label>
+                        <i18n:text key="physicalDescription-class/physicalDescriptions/extent"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="digitalorigin">
+                     <fd:label>
+                        <i18n:text key="physicalDescription-class/physicalDescriptions/digitalorigin"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                     <fd:selection-list>
+                        <fd:item value="">
+                           <fd:label>
+                              <i18n:text key="physicalDescription-class/physicalDescriptions/digitalorigin/"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="born digital">
+                           <fd:label>
+                              <i18n:text key="physicalDescription-class/physicalDescriptions/digitalorigin/born digital"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="reformatted digital">
+                           <fd:label>
+                              <i18n:text key="physicalDescription-class/physicalDescriptions/digitalorigin/reformatted digital"/>
+                           </fd:label>
+                        </fd:item>
+                     </fd:selection-list>
+                  </fd:field>
+                  <fd:repeater id="notes" orderable="true">
+                     <fd:label>
+                        <i18n:text key="physicalDescription-class/physicalDescriptions/notes"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:new id="common-textfield-class"/>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-notes" action-command="add-row" repeater="notes">
+                     <fd:label>
+                        <i18n:text key="physicalDescription-class/physicalDescriptions/add-to-notes"/>
+                     </fd:label>
+                  </fd:repeater-action>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="abstract-class">
+         <fd:widgets>
+            <fd:repeater id="abstracts" orderable="true">
+               <fd:label>
+                  <i18n:text key="abstract-class/abstracts"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:new id="common-textfield-class"/>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="tableOfContents-class">
+         <fd:widgets>
+            <fd:repeater id="tableOfContentss" orderable="true">
+               <fd:label>
+                  <i18n:text key="tableOfContents-class/tableOfContentss"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:new id="common-textfield-class"/>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="note-class">
+         <fd:widgets>
+            <fd:repeater id="notes" orderable="true">
+               <fd:label>
+                  <i18n:text key="note-class/notes"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:new id="common-textfield-class"/>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="targetAudience-class">
+         <fd:widgets>
+            <fd:repeater id="targetAudiences" orderable="true">
+               <fd:label>
+                  <i18n:text key="targetAudience-class/targetAudiences"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:field id="value">
+                     <fd:label>
+                        <i18n:text key="targetAudience-class/targetAudiences/value"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="authority">
+                     <fd:label>
+                        <i18n:text key="targetAudience-class/targetAudiences/authority"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="subject-class">
+         <doc:doc>
+            <p> This class uses a structured copied from form_model_gui_binding.xml in samples provided with the forms block in Cocoon 2.1.10. The
+               idea is that the elements within a subject element (topic, geographic, etc.) are handled by a single class "subject-widgets-class",
+               which uses a union/case/group structure to deal with the different types. The local-name of the element is bound to the "type" widget,
+               and the union uses the type to determine which group to implement. So, a mods_topic element causes type="mods_topic", which causes the
+               &gt;group id="mods_topic"&lt; to be instanced. </p>
+         </doc:doc>
+         <fd:widgets>
+            <fd:repeater id="subjects" orderable="true">
+               <fd:label>
+                  <i18n:text key="subject-class/subjects"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:field id="authority">
+                     <fd:label>
+                        <i18n:text key="subject-class/subjects/authority"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:new id="subject-widgets-class"/>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-linking-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="classification-class">
+         <fd:widgets>
+            <fd:repeater id="classifications" orderable="true">
+               <fd:label>
+                  <i18n:text key="classification-class/classifications"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:field id="value">
+                     <fd:label>
+                        <i18n:text key="classification-class/classifications/value"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="authority">
+                     <fd:label>
+                        <i18n:text key="classification-class/classifications/authority"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="edition">
+                     <fd:label>
+                        <i18n:text key="classification-class/classifications/edition"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="xidentifier-class">
+         <doc:doc>
+            <p> Note: this class uses "xidentifier" as its id instead of "identifier", because the latter appears to be a reserved word in Cocoon
+               Forms and breaks the form. </p>
+         </doc:doc>
+         <fd:widgets>
+            <fd:repeater id="xidentifiers" orderable="true">
+               <fd:label>
+                  <i18n:text key="xidentifier-class/xidentifiers"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:field id="value">
+                     <fd:label>
+                        <i18n:text key="xidentifier-class/xidentifiers/value"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="type">
+                     <fd:label>
+                        <i18n:text key="xidentifier-class/xidentifiers/type"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="displayLabel">
+                     <fd:label>
+                        <i18n:text key="xidentifier-class/xidentifiers/displayLabel"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="invalid">
+                     <fd:label>
+                        <i18n:text key="xidentifier-class/xidentifiers/invalid"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="location-class">
+         <fd:widgets>
+            <fd:repeater id="locations" orderable="true">
+               <fd:label>
+                  <i18n:text key="location-class/locations"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:field id="physicalLocation">
+                     <fd:label>
+                        <i18n:text key="location-class/locations/physicalLocation"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="authority">
+                     <fd:label>
+                        <i18n:text key="location-class/locations/authority"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="phys-displayLabel">
+                     <fd:label>
+                        <i18n:text key="location-class/locations/phys-displayLabel"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:field id="url">
+                     <fd:label>
+                        <i18n:text key="location-class/locations/url"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="url-displayLabel">
+                     <fd:label>
+                        <i18n:text key="location-class/locations/url-displayLabel"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="dateLastAccessed">
+                     <fd:label>
+                        <i18n:text key="location-class/locations/dateLastAccessed"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="accessCondition-class">
+         <fd:widgets>
+            <fd:repeater id="accessConditions" orderable="true">
+               <fd:label>
+                  <i18n:text key="accessCondition-class/accessConditions"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:field id="value">
+                     <fd:label>
+                        <i18n:text key="accessCondition-class/accessConditions/value"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="type">
+                     <fd:label>
+                        <i18n:text key="accessCondition-class/accessConditions/type"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="displayLabel">
+                     <fd:label>
+                        <i18n:text key="accessCondition-class/accessConditions/displayLabel"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="xlink">
+                     <fd:label>
+                        <i18n:text key="accessCondition-class/accessConditions/xlink"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="part-class">
+         <fd:widgets>
+            <fd:repeater id="parts" orderable="true">
+               <fd:label>
+                  <i18n:text key="part-class/parts"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:repeater id="details" orderable="true">
+                     <fd:label>
+                        <i18n:text key="part-class/parts/details"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:field id="details_number">
+                           <fd:label>
+                              <i18n:text key="part-class/parts/details/details_number"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="details_caption">
+                           <fd:label>
+                              <i18n:text key="part-class/parts/details/details_caption"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="details_title">
+                           <fd:label>
+                              <i18n:text key="part-class/parts/details/details_title"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="details_type">
+                           <fd:label>
+                              <i18n:text key="part-class/parts/details/details_type"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                           <fd:selection-list>
+                              <fd:item value="part"/>
+                              <fd:item value="volume"/>
+                              <fd:item value="issue"/>
+                              <fd:item value="chapter"/>
+                              <fd:item value="section"/>
+                              <fd:item value="paragraph"/>
+                              <fd:item value="track"/>
+                           </fd:selection-list>
+                        </fd:field>
+                        <fd:field id="details_level">
+                           <fd:label>
+                              <i18n:text key="part-class/parts/details/details_level"/>
+                           </fd:label>
+                           <fd:datatype base="integer"/>
+                        </fd:field>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-details" action-command="add-row" repeater="details">
+                     <fd:label>
+                        <i18n:text key="part-class/parts/add-to-details"/>
+                     </fd:label>
+                  </fd:repeater-action>
+                  <fd:field id="extent-start">
+                     <fd:label>
+                        <i18n:text key="part-class/parts/extent-start"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="extent-end">
+                     <fd:label>
+                        <i18n:text key="part-class/parts/extent-end"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="extent-total">
+                     <fd:label>
+                        <i18n:text key="part-class/parts/extent-total"/>
+                     </fd:label>
+                     <fd:datatype base="integer"/>
+                  </fd:field>
+                  <fd:field id="extent-list">
+                     <fd:label>
+                        <i18n:text key="part-class/parts/extent-list"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="extent-unit">
+                     <fd:label>
+                        <i18n:text key="part-class/parts/extent-unit"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                     <fd:selection-list>
+                        <fd:item value="pages"/>
+                        <fd:item value="minutes"/>
+                     </fd:selection-list>
+                  </fd:field>
+                  <fd:repeater id="dates">
+                     <fd:label>
+                        <i18n:text key="part-class/parts/dates"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:new id="common-subject-date-elements-class"/>
+                        <fd:new id="common-date-elements-class"/>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-dates" action-command="add-row" repeater="dates">
+                     <fd:label>
+                        <i18n:text key="part-class/parts/add-to-dates"/>
+                     </fd:label>
+                  </fd:repeater-action>
+                  <fd:repeater id="texts" orderable="true">
+                     <fd:label>
+                        <i18n:text key="part-class/parts/texts"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:new id="common-textfield-class"/>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-texts" action-command="add-row" repeater="texts">
+                     <fd:label>
+                        <i18n:text key="part-class/parts/add-to-texts"/>
+                     </fd:label>
+                  </fd:repeater-action>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-linking-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="recordInfo-class">
+         <doc:doc>
+            <p> Note: at save time, the first recordContentSource element will be populated with the current user id (from the Cocoon session), and
+               the first recordChangeDate element will be populated with the current time. This is controlled by the javascript widgets
+               "lastModifledBy" and "lastModified" in mods_bind.xml. </p>
+         </doc:doc>
+
+         <fd:widgets>
+            <fd:repeater id="recordInfos" orderable="true">
+               <fd:label>
+                  <i18n:text key="recordInfo-class/recordInfos"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:repeater id="recordContentSources" orderable="true">
+                     <fd:label>
+                        <i18n:text key="recordInfo-class/recordInfos/recordContentSources"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:field id="recordContentSources_value" required="true">
+                           <fd:datatype base="string"/>
+                           <fd:label>
+                              <i18n:text key="recordInfo-class/recordInfos/recordContentSources/recordContentSources_value"/>
+                           </fd:label>
+                        </fd:field>
+                        <fd:field id="recordContentSources_authority">
+                           <fd:label>
+                              <i18n:text key="recordInfo-class/recordInfos/recordContentSources/recordContentSources_authority"/>
+                           </fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:new id="common-language-elements-class"/>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-recordContentSources" action-command="add-row" repeater="recordContentSources">
+                     <fd:label>
+                        <i18n:text key="recordInfo-class/recordInfos/add-to-recordContentSources"/>
+                     </fd:label>
+                  </fd:repeater-action>
+                  <fd:repeater id="recordCreationDates">
+                     <fd:label>
+                        <i18n:text key="recordInfo-class/recordInfos/recordCreationDates"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:new id="common-subject-date-elements-class"/>
+                        <fd:new id="common-date-elements-class"/>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-recordCreationDates" action-command="add-row" repeater="recordCreationDates">
+                     <fd:label>
+                        <i18n:text key="recordInfo-class/recordInfos/add-to-recordCreationDates"/>
+                     </fd:label>
+                  </fd:repeater-action>
+                  <fd:repeater id="recordChangeDates">
+                     <fd:label>
+                        <i18n:text key="recordInfo-class/recordInfos/recordChangeDates"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:new id="common-subject-date-elements-class"/>
+                        <fd:new id="common-date-elements-class"/>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-recordChangeDates" action-command="add-row" repeater="recordChangeDates">
+                     <fd:label>
+                        <i18n:text key="recordInfo-class/recordInfos/add-to-recordChangeDates"/>
+                     </fd:label>
+                  </fd:repeater-action>
+                  <fd:repeater id="recordIdentifiers">
+                     <fd:label>
+                        <i18n:text key="recordInfo-class/recordInfos/recordIdentifiers"/>
+                     </fd:label>
+                     <fd:widgets>
+                        <fd:field id="recordIdentifiers_recordIdentifier">
+                           <fd:datatype base="string"/>
+                           <fd:label>
+                              <i18n:text key="recordInfo-class/recordInfos/recordIdentifiers/recordIdentifiers_recordIdentifier"/>
+                           </fd:label>
+                        </fd:field>
+                        <fd:field id="recordIdentifiers_recordIdentifierSource">
+                           <fd:datatype base="string"/>
+                           <fd:label>
+                              <i18n:text key="recordInfo-class/recordInfos/recordIdentifiers/recordIdentifiers_recordIdentifierSource"/>
+                           </fd:label>
+                        </fd:field>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-recordIdentifiers" action-command="add-row" repeater="recordIdentifiers">
+                     <fd:label>
+                        <i18n:text key="recordInfo-class/recordInfos/add-to-recordIdentifiers"/>
+                     </fd:label>
+                  </fd:repeater-action>
+                  <fd:field id="lastModifiedBy">
+                     <fd:label>
+                        <i18n:text key="recordInfo-class/recordInfos/lastModifiedBy"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="lastModified">
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <!--
+						<fd:field id="recordChangeDate">
+							<fd:label><i18n:text key="recordInfo-class/recordInfos/recordChangeDate"/></fd:label>
+							<fd:datatype base="string"/>
+						</fd:field>
+						-->
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="relatedItem-class">
+         <fd:widgets>
+            <fd:repeater id="relatedItems" orderable="true">
+               <fd:label>
+                  <i18n:text key="relatedItem-class/relatedItems"/>
+               </fd:label>
+               <fd:widgets>
+                  <fd:new id="common-linking-elements-class"/>
+                  <fd:field id="type">
+                     <fd:label>
+                        <i18n:text key="relatedItem-class/relatedItems/type"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                     <fd:selection-list>
+                        <fd:item value="preceding">
+                           <fd:label>
+                              <i18n:text key="relatedItem-class/relatedItems/type/preceding"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="succeeding">
+                           <fd:label>
+                              <i18n:text key="relatedItem-class/relatedItems/type/succeeding"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="original">
+                           <fd:label>
+                              <i18n:text key="relatedItem-class/relatedItems/type/original"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="host">
+                           <fd:label>
+                              <i18n:text key="relatedItem-class/relatedItems/type/host"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="constituent">
+                           <fd:label>
+                              <i18n:text key="relatedItem-class/relatedItems/type/constituent"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="series">
+                           <fd:label>
+                              <i18n:text key="relatedItem-class/relatedItems/type/series"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="otherVersion">
+                           <fd:label>
+                              <i18n:text key="relatedItem-class/relatedItems/type/otherVersion"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="otherFormat">
+                           <fd:label>
+                              <i18n:text key="relatedItem-class/relatedItems/type/otherFormat"/>
+                           </fd:label>
+                        </fd:item>
+                        <fd:item value="isReferencedBy">
+                           <fd:label>
+                              <i18n:text key="relatedItem-class/relatedItems/type/isReferencedBy"/>
+                           </fd:label>
+                        </fd:item>
+                     </fd:selection-list>
+                  </fd:field>
+                  <fd:field id="displayLabel">
+                     <fd:label>
+                        <i18n:text key="relatedItem-class/relatedItems/displayLabel"/>
+                     </fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <!-- 		<fd:field id="xlink">
+							<fd:label>xlink</fd:label>
+							<fd:datatype base="string" />
+						</fd:field>
+						<fd:field id="relatedItem_ID">
+							<fd:label>ID</fd:label>
+							<fd:datatype base="string" />
+						</fd:field>-->
+                  <!-- 						<fd:repeater id="parts" orderable="true">
+							<fd:label>mods:part</fd:label>
+							<fd:widgets>
+							<fd:new id="part-class" />
+							</fd:widgets>
+							</fd:repeater>
+							<fd:repeater-action id="add-to-parts"
+							action-command="add-row" repeater="parts">
+							<fd:label>New part</fd:label>
+							</fd:repeater-action> -->
+                  <fd:new id="core-elements"/>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
+            </fd:repeater>
+         </fd:widgets>
+      </fd:class>
+      <fd:class id="core-elements">
+         <fd:widgets>
+            <!-- **********************************************************************
+					mods:titleInfo
+					***************************************************************************-->
+            <fd:new id="titleInfo-class"/>
+            <fd:repeater-action id="add-to-titleInfos" action-command="add-row" repeater="titleInfos">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-titleInfos"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- **********************************************************************
+					mods:name
+					***************************************************************************-->
+            <fd:new id="name-class"/>
+            <fd:repeater-action id="add-to-names" action-command="add-row" repeater="names">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-names"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- **********************************************************************
+					mods:typeOfResource
+					***************************************************************************-->
+            <fd:new id="typeOfResource-class"/>
+            <fd:repeater-action id="add-to-typeOfResources" action-command="add-row" repeater="typeOfResources">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-typeOfResources"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- **********************************************************************
+					genre
+					***************************************************************************-->
+            <fd:new id="genre-class"/>
+            <fd:repeater-action id="add-to-genres" action-command="add-row" repeater="genres">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-genres"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- **********************************************************************
+					originInfo
+					***************************************************************************-->
+            <fd:new id="originInfo-class"/>
+            <fd:repeater-action id="add-to-originInfos" action-command="add-row" repeater="originInfos">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-originInfos"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- **************************************************
+					Language
+					****************************************************-->
+            <fd:new id="language-class"/>
+            <fd:repeater-action id="add-to-languages" action-command="add-row" repeater="languages">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-languages"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- ****************************************************
+					physicalDescription
+					********************************************************-->
+            <fd:new id="physicalDescription-class"/>
+            <fd:repeater-action id="add-to-physicalDescriptions" action-command="add-row" repeater="physicalDescriptions">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-physicalDescriptions"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- ************************************************
+					mods:abstract
+					***************************************************-->
+            <fd:new id="abstract-class"/>
+            <fd:repeater-action id="add-to-abstracts" action-command="add-row" repeater="abstracts">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-abstracts"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- ************************************************
+					mods:tableOfContents
+					***************************************************-->
+            <fd:new id="tableOfContents-class"/>
+            <fd:repeater-action id="add-to-tableOfContentss" action-command="add-row" repeater="tableOfContentss">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-tableOfContentss"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- ************************************************
+					mods:targetAudience
+					***************************************************-->
+            <fd:new id="targetAudience-class"/>
+            <fd:repeater-action id="add-to-targetAudiences" action-command="add-row" repeater="targetAudiences">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-targetAudiences"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- ************************************************
+					mods:note
+					***************************************************-->
+            <fd:new id="note-class"/>
+            <fd:repeater-action id="add-to-notes" action-command="add-row" repeater="notes">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-notes"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- ************************************************
+					mods:subject
+					***************************************************-->
+            <fd:new id="subject-class"/>
+            <fd:repeater-action id="add-to-subjects" action-command="add-row" repeater="subjects">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-subjects"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- **********************************************************************
+					classification
+					***************************************************************************-->
+            <fd:new id="classification-class"/>
+            <fd:repeater-action id="add-to-classifications" action-command="add-row" repeater="classifications">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-classifications"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- **********************************************************************
+					part
+					***************************************************************************-->
+            <fd:new id="part-class"/>
+            <fd:repeater-action id="add-to-parts" action-command="add-row" repeater="parts">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-parts"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- **********************************************************************
+					identifier
+					***************************************************************************-->
+            <!-- note: id="identifiers" doesn't work, seems to be reserved word -->
+            <fd:new id="xidentifier-class"/>
+            <fd:repeater-action id="add-to-xidentifiers" action-command="add-row" repeater="xidentifiers">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-xidentifiers"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- **********************************************************************
+					location
+					***************************************************************************-->
+            <fd:new id="location-class"/>
+            <fd:repeater-action id="add-to-locations" action-command="add-row" repeater="locations">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-locations"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- **********************************************************************
+					accessCondition
+					***************************************************************************-->
+            <fd:new id="accessCondition-class"/>
+            <fd:repeater-action id="add-to-accessConditions" action-command="add-row" repeater="accessConditions">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-accessConditions"/>
+               </fd:label>
+            </fd:repeater-action>
+            <!-- **********************************************************************
+					recordInfo
+					***************************************************************************-->
+            <fd:new id="recordInfo-class"/>
+            <fd:repeater-action id="add-to-recordInfos" action-command="add-row" repeater="recordInfos">
+               <fd:label>
+                  <i18n:text key="core-elements/add-to-recordInfos"/>
+               </fd:label>
+            </fd:repeater-action>
+         </fd:widgets>
+         <!-- end of core-elements class -->
+      </fd:class>
+      <!--
+			
+			
+			
+			End of classes
+			
+			
+			
+		-->
+      <fd:output id="id">
+         <fd:label>
+            <i18n:text key="id"/>
+         </fd:label>
+         <fd:datatype base="string"/>
+      </fd:output>
+      <fd:field id="tab-state">
+         <fd:datatype base="string"/>
+      </fd:field>
+      <fd:new id="core-elements"/>
+      <fd:new id="relatedItem-class"/>
+      <fd:repeater-action id="add-to-relatedItems" action-command="add-row" repeater="relatedItems">
+         <fd:label>
+            <i18n:text key="add-to-relatedItems"/>
+         </fd:label>
+      </fd:repeater-action>
+      <fd:submit id="success" action-command="success">
+         <fd:label>
+            <i18n:text key="success"/>
+         </fd:label>
+      </fd:submit>
+   </fd:widgets>
+</fd:form>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2005, 2007, 2008 University of Alberta Libraries  
+    
+This file is part of MODS Editor.
+
+MODS Editor is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+MODS Editor is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<localize xmlns:fb="http://apache.org/cocoon/forms/1.0#binding" xmlns:fd="http://apache.org/cocoon/forms/1.0#definition" xmlns:ft="http://apache.org/cocoon/forms/1.0#template" xmlns:fi="http://apache.org/cocoon/forms/1.0#instance" xmlns:jx="http://apache.org/cocoon/templates/jx/1.0" xmlns:y="proto-xsl">
+	<!--
+		- generate a stylesheet on the fly based on config here
+	-->
+	<suppress>
+		<class>common-linking-elements</class>
+		<class>name</class>
+		<field class="common-language-elements">transliteration</field>
+		<!-- nested field -->
+		<field class="originInfo">places_placeterms_authority</field>
+	</suppress>
+	<selectionlist class="common-language-elements">
+		<field id="lang">
+			<item value="">(no language)</item>
+			<item value="eng">English</item>
+			<item value="fre">French</item>
+			<styling/>
+		</field>
+	</selectionlist>
+	<!-- note: userclasses can be a space-delimited list of class names -->
+	<subclass class="common-textfield" userclasses="note">
+		<suppress>
+			<field>xlink</field>
+		</suppress>
+		<selectionlist>
+			<field id="type">
+				<item value="">(no type)</item>
+				<item value="type1">type 1</item>
+				<item value="type2">type 2</item>
+				<styling/>
+			</field>
+		</selectionlist>
+	</subclass>
+	<!-- insert links to Google Books for isbn's -->
+	<insert class="xidentifier">
+		<path position="before">
+			<!-- note: path elements will be concatenated with "//", so you don't have to be complete -->
+			<repeater id="xidentifiers"/>
+			<!-- use @template-element to anchor the insertion on a different template element, e.g. ft:widget-label -->
+			<widget id="type" template-element="ft:widget-label"/>
+		</path>
+		<model>
+			<fd:field id="GoogleLink">
+				<fd:label>Google Books</fd:label>
+				<fd:datatype base="string"/>
+			</fd:field>
+		</model>
+		<binding>
+			<fb:value id="GoogleLink" path="." direction="load"/>
+		</binding>
+		<template>
+			<!-- need jx:if to display this only if type=isbn -->
+			<jx:if test="${widget.getChild('type').getValue() == 'isbn'}">
+				<div style="float: right; padding: 5px; border: 1px solid black; margin: 5px;">
+					<ft:widget id="GoogleLink">
+						<fi:styling type="url"/>
+					</ft:widget>
+				</div>
+			</jx:if>
+		</template>
+		<xslt>
+			<y:template match="fi:field[fi:styling/@type='url']">
+				<a target="_new">
+					<y:attribute name="href">http://books.google.com/books?vid=ISBN<y:value-of select="fi:value"/></y:attribute>
+					<y:value-of select="fi:label"/>
+				</a>
+			</y:template>
+		</xslt>
+	</insert>
+</localize>

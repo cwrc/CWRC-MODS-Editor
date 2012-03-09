@@ -1,0 +1,25 @@
+<selectionlist class="originInfo">
+   <!-- from http://www.loc.gov/standards/valuelist/marcfrequency.html -->
+   <field id="frequency">
+      <item value=""></item>
+      <item value="Continuously updated">Continuously updated</item>
+      <item value="Daily">Daily</item>
+      <item value="Semiweekly">Semiweekly</item>
+      <item value="Three times a week">Three times a week</item>
+      <item value="Weekly">Weekly</item>
+      <item value="Biweekly">Biweekly</item>
+      <item value="Three times a month">Three times a month</item>
+      <item value="Semimonthly">Semimonthly</item>
+      <item value="Monthly">Monthly</item>
+      <item value="Bimonthly">Bimonthly</item>
+      <item value="Quarterly">Quarterly</item>
+      <item value="Three times a year">Three times a year</item>
+      <item value="Semiannual">Semiannual</item>
+      <item value="Annual">Annual</item>
+      <item value="Biennial">Biennial</item>
+      <item value="Triennial">Triennial</item>
+      <item value="Completely irregular">Completely irregular</item>
+      <styling/>
+   </field>
+</selectionlist>
+
