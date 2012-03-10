@@ -19,6 +19,35 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <map:sitemap xmlns:map="http://apache.org/cocoon/sitemap/1.0">
 	<!-- sitemap for MODS editor subproject -->
+   
+   <!-- configuration
+      
+      Some paths and other parameters must be set in a properties file, which is referenced in cocoon.xconf
+      
+      Add this to cocoon.xconf, just before "</input-modules>". Change the file path to point to the directory with the CWRC MODS sitemap.
+      
+   <component-instance class="org.apache.cocoon.components.modules.input.PropertiesFileModule" logger="core.modules.input" name="cwrcmods-properties">
+      <file src="/path/to/cocoon/project/cocoon.properties"/>
+   </component-instance>
+   
+      Create cocoon.properties with these values, replacing as appropriate:
+      
+repo=/Users/peterbinkley/data/modseditor-cwrc/temp
+#root url of mods editor
+modseditor=http://localhost:8080/cocoon/modseditor_cwrc
+ fedora=newcastle.library.ualberta.ca:8180/fedora
+fedoraUser=fedoraAdmin
+fedoraPassword=xxxxxxxxxxxx
+      
+      Cocoon must be restarted whenever cocoon.properties changes.
+      
+      Add cocoon.properties to .gitignore to make sure that it never gets committed.
+      
+      -->
+   
+   
+   
+   
 	<map:components>
 		<map:generators default="file">
 			<!-- use the new implementation of JX !-->
@@ -96,26 +125,6 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 				</handlers>
 			</authentication-manager>
 			<global-variables>
-				<!-- path to repo directory, where modified records will be saved -->
-			   <!-- Piyapong's workstation -->
-				<!--<repo>/C:/fedora-3.1/tomcat/server/webapps/cwrc/tmp</repo>-->
-			   <!-- Peter's laptop -->
-			   <repo>/Users/peterbinkley/data/modseditor-cwrc/temp</repo>
-			   <!-- newcastle -->
-				<!--<repo>/export/digital/era/webapps/cwrc/tmp</repo>-->
-			   <!-- url of WebDAV interface to which indexing data will be POSTed -->
-				 <webdav>webdav://localhost:8180/fedora</webdav> 
-				<!-- root url of mods editor -->
-				<modseditor>http://localhost:8080/cocoon/modseditor_cwrc</modseditor>
- 
-				<!-- newcastle version -->
-				<!--<modseditor>http://localhost:8180/cocoon/modseditor_cwrc</modseditor>-->
-			   
-			   
-			   <fedora>newcastle.library.ualberta.ca:8180/fedora</fedora>
-			   <fedoraUser>fedoraAdmin</fedoraUser>
-            <fedoraPassword>xxxxxxxxxxxxxxx</fedoraPassword>
-			   
 			</global-variables>
 		</map:component-configurations>
 		<map:pipeline>
@@ -148,7 +157,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			 
          <map:match pattern="fedora-mods/*">
             <!-- e.g. fedora-mods/orlando:477 -->
-            <map:generate src="http://{global:fedora}/get/{1}/MODS"/>
+            <map:generate src="http://{cwrcmods-properties:fedora}/get/{1}/MODS"/>
             <map:transform src="xsl/strip-namespaces.xsl"/>
             <map:transform src="xsl/mods-preprocess.xsl"/>
 
@@ -158,11 +167,11 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		   <map:match pattern="fedora-nextPID">
 		      <map:generate type="request"/>
 		      <map:transform src="xsl/fedora-nextPID.xsl">
-		         <map:parameter name="fedora" value="{global:fedora}"/>
+		         <map:parameter name="fedora" value="{cwrcmods-properties:fedora}"/>
 		      </map:transform>
 		      <map:transform type="webdav">
-		         <map:parameter name="username" value="{global:fedoraUser}"/>
-		         <map:parameter name="password" value="{global:fedoraPassword}"/>
+		         <map:parameter name="username" value="{cwrcmods-properties:fedoraUser}"/>
+		         <map:parameter name="password" value="{cwrcmods-properties:fedoraPassword}"/>
 		      </map:transform>
 		      
 		      <map:serialize type="xml"/>
@@ -253,13 +262,13 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
             <!--<map:act type="auth-protect">-->
             <map:parameter name="handler" value="modshandler"/>
             <map:select type="resource-exists">
-               <map:when test="{global:repo}/{request-param:tag}.xml">
+               <map:when test="{cwrcmods-properties:repo}/{request-param:tag}.xml">
                   <!-- if file exists in temp directory, use it -->
                   <!-- TODO: determine localizer in flowscript based on genre in MODS -->
                   <map:call function="handleForm">
                      <map:parameter name="function" value="form2xml"/>
                      <map:parameter name="form-definition" value="cocoon:/forms/mods_model.xml?localizer={1}"/>
-                     <map:parameter name="documentURI" value="cocoon:/mods-data/{global:repo}/{request-param:tag}.xml"/>
+                     <map:parameter name="documentURI" value="cocoon:/mods-data/{cwrcmods-properties:repo}/{request-param:tag}.xml"/>
                      <map:parameter name="bindingURI" value="cocoon:/forms/mods_bind.xml?localizer={1}"/>
                      <map:parameter name="displayURI" value="mods-display-pipeline?localizer={1}"/>
                      <map:parameter name="successURI" value="mods-success-pipeline?localizer={1}"/>
@@ -340,7 +349,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			   
 				<map:transform type="browser-update"/>
 				<!--<map:transform src="cocoon:/forms/mods_styling.xsl">-->
-				   <map:transform src="{global:modseditor}/forms/mods_styling.xsl">
+				   <map:transform src="{cwrcmods-properties:modseditor}/forms/mods_styling.xsl">
 				      <map:parameter name="resources-uri" value="{baselink:SitemapBaseLink}resources"/>
 				</map:transform>
 				<!-- normalizing whitespace in the html output reduces the download size by about 25% -->
@@ -360,7 +369,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 
 			<map:match pattern="mods-data/**">
 				<!-- if you are using the repo global variable and you want to draw your MODS records
-					from the same location, change the @src to "${global:repo}/{1}". -->
+					from the same location, change the @src to "${cwrcmods-properties:repo}/{1}". -->
 <!--				<map:generate src="{1}" label="content"/>-->
 				<map:generate src="{1}" label="content"/>
 				<map:transform src="xsl/strip-namespaces.xsl"/>
@@ -388,7 +397,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 <!-- save MODS record to the file system -->				
 	<!--		
 				<map:transform src="xsl/source-writer.xsl">
-					<map:parameter name="repo" value="{global:repo}"/>
+					<map:parameter name="repo" value="{cwrcmods-properties:repo}"/>
 					<map:parameter name="documentURI" value="{flow-attribute:documentURI}"/>
 				</map:transform>
 				<map:transform type="write-source"/>
@@ -397,16 +406,15 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 
             <map:transform src="xsl/store-fedora.xsl">
                <map:parameter name="uuid" value="{flow-attribute:uuid}"/>
-               <map:parameter name="repo" value="{global:repo}"/>
-               <map:parameter name="fedora" value="{global:fedora}"/>
+               <map:parameter name="repo" value="{cwrcmods-properties:repo}"/>
+               <map:parameter name="fedora" value="{cwrcmods-properties:fedora}"/>
                <map:parameter name="documentURI" value="{flow-attribute:documentURI}"/>
             </map:transform>
 
             <map:transform type="webdav">
-               <map:parameter name="username" value="{global:fedoraUser}"/>
-               <map:parameter name="password" value="{global:fedoraPassword}"/>
+               <map:parameter name="username" value="{cwrcmods-properties:fedoraUser}"/>
+               <map:parameter name="password" value="{cwrcmods-properties:fedoraPassword}"/>
             </map:transform>
-<map:serialize type="xml"/>
 <!--
 
 				<map:transform src="xsl/saveResult.xsl">
