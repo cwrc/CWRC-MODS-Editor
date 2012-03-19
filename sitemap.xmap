@@ -157,7 +157,7 @@ fedoraPassword=xxxxxxxxxxxx
 			 
          <map:match pattern="fedora-mods/*">
             <!-- e.g. fedora-mods/orlando:477 -->
-            <map:generate src="http://{cwrcmods-properties:fedora}/get/{1}/MODS"/>
+            <map:generate src="http://{cwrcmods-properties:fedoraUser}:{cwrcmods-properties:fedoraPassword}@{cwrcmods-properties:fedora}/get/{1}/MODS"/>
             <map:transform src="xsl/strip-namespaces.xsl"/>
             <map:transform src="xsl/mods-preprocess.xsl"/>
 
