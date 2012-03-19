@@ -18,7 +18,10 @@ You should have received a copy of the GNU General Public License
 along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mods="http://www.loc.gov/mods/v3"
-   xmlns:webdav="http://cocoon.apache.org/webdav/1.0" exclude-result-prefixes="mods webdav">
+xmlns:management="http://www.fedora.info/definitions/1/0/management/"
+   xmlns:webdav="http://cocoon.apache.org/webdav/1.0" 
+exclude-result-prefixes="mods webdav"
+>
    <xsl:param name="uuid"/>
    <xsl:param name="repo"/>
    <xsl:param name="fedora"/>
@@ -27,7 +30,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
    <xsl:variable name="saveuuid">
       <xsl:choose>
          <xsl:when test="$uuid='new'">
-            <xsl:value-of select="document('cocoon:/fedora-nextPID')/webdav:response/webdav:body/webdav:pidList/webdav:pid"/>
+            <xsl:value-of select="document('cocoon:/fedora-nextPID')/webdav:response/webdav:body/management:pidList/management:pid"/>
          </xsl:when>
          <xsl:otherwise>
             <xsl:value-of select="$uuid"/>
