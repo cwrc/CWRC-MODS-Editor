@@ -632,7 +632,7 @@
                   <i18n:text key="single-name-class/nameparts"/>
                </fd:label>
                <fd:widgets>
-                  <fd:field id="type">
+                  <fd:field id="nameparts_type">
                      <fd:label>
                         <i18n:text key="single-name-class/nameparts/type"/>
                      </fd:label>

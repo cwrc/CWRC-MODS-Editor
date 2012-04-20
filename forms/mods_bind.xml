@@ -245,7 +245,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 	<fb:class id="single-name-class">
 		<fb:repeater id="nameparts" row-path="mods_namePart" parent-path=".">
 			<fb:value id="value" path="."/>
-			<fb:value id="type" path="@type"/>
+			<fb:value id="nameparts_type" path="@type"/>
 		</fb:repeater>
       <!-- new MODS element -->
 	   <fb:value id="displayForm" path="mods_displayForm" lenient="true"/>

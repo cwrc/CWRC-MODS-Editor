@@ -4,7 +4,9 @@
     xmlns:fd="http://apache.org/cocoon/forms/1.0#definition"
     xmlns:ft="http://apache.org/cocoon/forms/1.0#template"
     xmlns:fi="http://apache.org/cocoon/forms/1.0#instance"
-    xmlns:jx="http://apache.org/cocoon/templates/jx/1.0" xmlns:y="proto-xsl"
+    xmlns:jx="http://apache.org/cocoon/templates/jx/1.0"
+    xmlns:i18n="http://apache.org/cocoon/i18n/2.1"
+    xmlns:y="proto-xsl"
    id="Book">
    &selgenre;
    &selrelatedItemType;
@@ -61,6 +63,19 @@
       <field class="recordInfo">lastModified</field>
       <field class="recordInfo">lastModifiedBy</field>
       -->
+      <!-- changes from Mariana's document, 2012-04-19 -->
+      <field class="single-titleInfo">nonsort</field>
+      <field class="single-titleInfo">partnumber</field>
+      <field class="single-titleInfo">partname</field>
+      <field class="single-name">nameparts_type</field>
+      <field class="originInfo">places_placeterms_type</field>
+      <selectionlist class="common-subject-date-elements">
+         <field id="encoding">
+            <item value="iso8601">
+               <i18n:text key="common-subject-date-elements-class/encoding/iso8601"/>
+            </item>
+         </field>
+      </selectionlist>
    </suppress>
    <!-- note: userclasses can be a space-delimited list of class names -->
    <selectionlist class="genre">

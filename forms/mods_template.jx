@@ -410,7 +410,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 										<ft:widget-label id="../../nameparts"/>
 										<jx:out value="${repeaterLoop.index + 1}"/>
 									</h6>
-									<ft:widget id="type"/>
+									<ft:widget id="nameparts_type"/>
 								   <ft:widget id="value" type="suggest">
 										<fi:styling size="50"/>
 									</ft:widget>
